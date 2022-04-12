@@ -64,6 +64,10 @@ public class azure
         close();
         */
 
+        connect();
+        System.out.println(authorize(1000, "h"));
+        close();
+
     } 
 
 
@@ -269,12 +273,12 @@ public class azure
         //close();
     }
 
-
+    //if no user is found, the method will return null. Otherwise, it will return the access level that the specific user has
     public static String authorize(int ID, String pass) throws SQLException
     {
         //connect();
         ResultSet user = null;
-        String access;
+        String access = null;
         try
         {
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM Employee WHERE ID = ? AND Password = ?");
@@ -288,7 +292,6 @@ public class azure
 
         } catch (Exception e) {
             error = e.toString();
-            return error;
         }
 
         //close();
