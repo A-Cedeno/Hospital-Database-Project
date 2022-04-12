@@ -9,6 +9,11 @@ package javaapplication5;
  * @author Georenz
  */
 public class Doctor extends PatientCareUser  {
+    
+    public Doctor(){
+        
+        
+    }
         String Specialization;
         
         void updateDischargeInstructions(){
