@@ -91,8 +91,8 @@ public class Login extends javax.swing.JFrame {
         {
 		JOptionPane.showMessageDialog(null, "Login Successful");
                  this.dispose();
-                BillingSearch billingsearch = new BillingSearch();
-                billingsearch.setVisible(true);
+                Billing billing = new Billing();
+                billing.setVisible(true);
         }
         else if (Username.equals("nurse") && Password.equals("helps"))
                 {

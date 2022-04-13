@@ -98,17 +98,21 @@ public class Billing extends javax.swing.JFrame {
         TotalLabel = new javax.swing.JLabel();
         Save = new javax.swing.JButton();
         GenerateBill = new javax.swing.JButton();
-        Logout = new javax.swing.JButton();
         BillNum = new javax.swing.JTextField();
         DueDate = new javax.swing.JTextField();
         Tax = new javax.swing.JTextField();
         Wallpaper3 = new javax.swing.JLabel();
+        Logout = new javax.swing.JButton();
+        PatientSelect = new javax.swing.JScrollPane();
+        jList6 = new javax.swing.JList<>();
+        OK = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 250));
-        setMaximumSize(new java.awt.Dimension(414, 466));
-        setMinimumSize(new java.awt.Dimension(414, 466));
-        setPreferredSize(new java.awt.Dimension(414, 466));
+        setMaximumSize(new java.awt.Dimension(580, 466));
+        setMinimumSize(new java.awt.Dimension(580, 466));
+        setPreferredSize(new java.awt.Dimension(580, 466));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(420, 450));
@@ -432,18 +436,10 @@ public class Billing extends javax.swing.JFrame {
         jPanel3.add(TotalLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
         Save.setText("Save");
-        jPanel3.add(Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
+        jPanel3.add(Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
 
         GenerateBill.setText("Generate Bill");
-        jPanel3.add(GenerateBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
-
-        Logout.setText("Logout");
-        Logout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogoutActionPerformed(evt);
-            }
-        });
-        jPanel3.add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, -1, -1));
+        jPanel3.add(GenerateBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
 
         BillNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -473,6 +469,40 @@ public class Billing extends javax.swing.JFrame {
         jTabbedPane1.addTab("View Bill", jPanel3);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 420, 450));
+
+        Logout.setText("Logout");
+        Logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, -1));
+
+        jList6.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "John Doe", "Jane Doe" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList6.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        PatientSelect.setViewportView(jList6);
+
+        getContentPane().add(PatientSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 120, 90));
+
+        OK.setText("Ok");
+        OK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OKMouseClicked(evt);
+            }
+        });
+        OK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OKActionPerformed(evt);
+            }
+        });
+        getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 60, 20));
+
+        jLabel1.setText("Select Patient");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -566,6 +596,16 @@ public class Billing extends javax.swing.JFrame {
     private void TaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TaxActionPerformed
+
+    private void OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKMouseClicked
+
+    }//GEN-LAST:event_OKMouseClicked
+
+    private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
+        this.dispose();
+        Billing billing = new Billing();
+        billing.setVisible(true);
+    }//GEN-LAST:event_OKActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -647,6 +687,8 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JLabel MaritalStatusLabel;
     private javax.swing.JScrollPane Medication;
     private javax.swing.JLabel MedicationLabel;
+    private javax.swing.JButton OK;
+    private javax.swing.JScrollPane PatientSelect;
     private javax.swing.JTextField Pregnant;
     private javax.swing.JLabel PregnantLabel;
     private javax.swing.JTextField PrimaryPhone;
@@ -671,11 +713,13 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JLabel WeightLabel;
     private javax.swing.JTextField Zip;
     private javax.swing.JLabel ZipLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
     private javax.swing.JList<String> jList4;
     private javax.swing.JList<String> jList5;
+    private javax.swing.JList<String> jList6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

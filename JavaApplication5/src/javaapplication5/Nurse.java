@@ -68,12 +68,17 @@ public class Nurse extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         Diagnosis = new javax.swing.JTextField();
         Admit = new javax.swing.JComboBox<>();
+        PatientSelect = new javax.swing.JScrollPane();
+        jList6 = new javax.swing.JList<>();
+        OK = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 250));
-        setMaximumSize(new java.awt.Dimension(694, 360));
-        setMinimumSize(new java.awt.Dimension(694, 360));
-        setPreferredSize(new java.awt.Dimension(694, 360));
+        setMaximumSize(new java.awt.Dimension(840, 360));
+        setMinimumSize(new java.awt.Dimension(840, 360));
+        setPreferredSize(new java.awt.Dimension(840, 360));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Logout.setText("Logout");
@@ -82,7 +87,7 @@ public class Nurse extends javax.swing.JFrame {
                 LogoutActionPerformed(evt);
             }
         });
-        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, -1, -1));
+        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 310, -1, -1));
 
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(503, 300));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(503, 300));
@@ -214,10 +219,11 @@ public class Nurse extends javax.swing.JFrame {
         getContentPane().add(DiagnosisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 110, -1));
 
         jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
         Notes.setViewportView(jTextArea1);
 
-        getContentPane().add(Notes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 290, 100));
+        getContentPane().add(Notes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 280, 100));
 
         jLabel12.setText("Notes");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
@@ -231,6 +237,36 @@ public class Nurse extends javax.swing.JFrame {
 
         Admit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
         getContentPane().add(Admit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 100, -1));
+
+        jList6.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "John Doe", "Jane Doe" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList6.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        PatientSelect.setViewportView(jList6);
+
+        getContentPane().add(PatientSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 120, 90));
+
+        OK.setText("Ok");
+        OK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OKMouseClicked(evt);
+            }
+        });
+        OK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OKActionPerformed(evt);
+            }
+        });
+        getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 140, 60, 20));
+
+        jLabel1.setText("Select Patient");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 6.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, -10, 170, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -260,6 +296,16 @@ public class Nurse extends javax.swing.JFrame {
     private void DOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DOBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DOBActionPerformed
+
+    private void OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKMouseClicked
+
+    }//GEN-LAST:event_OKMouseClicked
+
+    private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
+        this.dispose();
+        Billing billing = new Billing();
+        billing.setVisible(true);
+    }//GEN-LAST:event_OKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,6 +368,8 @@ public class Nurse extends javax.swing.JFrame {
     private javax.swing.JLabel LastNameLabel;
     private javax.swing.JButton Logout;
     private javax.swing.JScrollPane Notes;
+    private javax.swing.JButton OK;
+    private javax.swing.JScrollPane PatientSelect;
     private javax.swing.JComboBox<String> Religion;
     private javax.swing.JLabel ReligionLabel;
     private javax.swing.JTextField SSN;
@@ -331,9 +379,12 @@ public class Nurse extends javax.swing.JFrame {
     private javax.swing.JLabel Wallpaper;
     private javax.swing.JTextField Weight;
     private javax.swing.JLabel WeightLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList3;
+    private javax.swing.JList<String> jList6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane4;

@@ -68,9 +68,7 @@ public class Patient extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         BloodTypeLabel = new javax.swing.JLabel();
         BloodType = new javax.swing.JComboBox<>();
         SexuallyActiveLabel = new javax.swing.JLabel();
@@ -81,6 +79,10 @@ public class Patient extends javax.swing.JFrame {
         Weight = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
+        MedicalConditions = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        MedicalConditions1 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         Wallpaper3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -90,7 +92,6 @@ public class Patient extends javax.swing.JFrame {
         setLocation(new java.awt.Point(500, 360));
         setMaximumSize(new java.awt.Dimension(500, 360));
         setMinimumSize(new java.awt.Dimension(500, 360));
-        setPreferredSize(new java.awt.Dimension(500, 360));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Logout.setText("Logout");
@@ -99,7 +100,7 @@ public class Patient extends javax.swing.JFrame {
                 LogoutActionPerformed(evt);
             }
         });
-        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
+        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
 
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(503, 300));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(503, 300));
@@ -166,7 +167,7 @@ public class Patient extends javax.swing.JFrame {
         jPanel2.add(PrimaryPhoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 130, -1));
 
         SecondaryPhoneLabel.setText("Emergency Phone Number");
-        jPanel2.add(SecondaryPhoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 140, -1));
+        jPanel2.add(SecondaryPhoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 150, -1));
 
         StreetNameLabel.setText("Street Name");
         jPanel2.add(StreetNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
@@ -208,30 +209,28 @@ public class Patient extends javax.swing.JFrame {
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MedicareCT", "Medicaid Ct", "United Healthcare", "" }));
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 90, -1));
+        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 100, -1));
 
         jLabel2.setText("Primary Physician");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
 
         jLabel3.setText("Covid Vaccine");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 90, -1));
 
         jLabel4.setText("Allergies");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 20));
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 90, 20));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, 20));
 
         jLabel5.setText("Medical Conditions");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, -1, 20));
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 90, 20));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, 20));
 
         BloodTypeLabel.setText("Blood Type");
-        jPanel3.add(BloodTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, 20));
+        jPanel3.add(BloodTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, 20));
 
         BloodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "O+", "B+", "AB+", "A-", "O-", "B-", "AB-" }));
-        jPanel3.add(BloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 100, -1));
+        jPanel3.add(BloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 100, -1));
 
         SexuallyActiveLabel.setText("Sexually Active?");
-        jPanel3.add(SexuallyActiveLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 90, 20));
+        jPanel3.add(SexuallyActiveLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 90, 20));
 
         SexuallyActive.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
         SexuallyActive.addActionListener(new java.awt.event.ActionListener() {
@@ -239,40 +238,54 @@ public class Patient extends javax.swing.JFrame {
                 SexuallyActiveActionPerformed(evt);
             }
         });
-        jPanel3.add(SexuallyActive, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 100, 20));
+        jPanel3.add(SexuallyActive, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 100, 20));
 
         HeightLabel.setText("Height (ft)");
-        jPanel3.add(HeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, 20));
+        jPanel3.add(HeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, 20));
 
         Height.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HeightActionPerformed(evt);
             }
         });
-        jPanel3.add(Height, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 100, -1));
+        jPanel3.add(Height, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 90, -1));
 
         WeightLabel.setText("Weight (kg)");
-        jPanel3.add(WeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, 20));
+        jPanel3.add(WeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, 20));
 
         Weight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WeightActionPerformed(evt);
             }
         });
-        jPanel3.add(Weight, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 100, -1));
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 90, -1));
-        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 90, -1));
+        jPanel3.add(Weight, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 90, -1));
+        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 90, -1));
+        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 90, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        MedicalConditions.setViewportView(jTextArea1);
+
+        jPanel3.add(MedicalConditions, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 210, 70));
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
+        jTextArea2.setRows(5);
+        MedicalConditions1.setViewportView(jTextArea2);
+
+        jPanel3.add(MedicalConditions1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 210, 70));
 
         Wallpaper3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 5.png"))); // NOI18N
         Wallpaper3.setText("jLabel29");
-        jPanel3.add(Wallpaper3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 340));
+        jPanel3.add(Wallpaper3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 340));
 
         jTabbedPane1.addTab("Medical Information", jPanel3);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 360));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 360));
 
         jButton1.setText("Submit");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
 
         jLabel6.setText("Submit info to Database");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 110, -1));
@@ -286,10 +299,6 @@ public class Patient extends javax.swing.JFrame {
         login.setVisible(true);         // TODO add your handling code here:
     }//GEN-LAST:event_LogoutActionPerformed
 
-    private void SexuallyActiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SexuallyActiveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SexuallyActiveActionPerformed
-
     private void HeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HeightActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HeightActionPerformed
@@ -301,6 +310,10 @@ public class Patient extends javax.swing.JFrame {
     private void GenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GenderActionPerformed
+
+    private void SexuallyActiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SexuallyActiveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SexuallyActiveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,6 +373,8 @@ public class Patient extends javax.swing.JFrame {
     private javax.swing.JTextField LastName;
     private javax.swing.JLabel LastNameLabel;
     private javax.swing.JButton Logout;
+    private javax.swing.JScrollPane MedicalConditions;
+    private javax.swing.JScrollPane MedicalConditions1;
     private javax.swing.JTextField PrimaryPhone;
     private javax.swing.JLabel PrimaryPhoneLabel;
     private javax.swing.JComboBox<String> Religion;
@@ -393,8 +408,8 @@ public class Patient extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
