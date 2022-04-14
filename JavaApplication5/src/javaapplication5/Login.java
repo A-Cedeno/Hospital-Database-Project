@@ -112,8 +112,8 @@ public class Login extends javax.swing.JFrame {
                 {
                     JOptionPane.showMessageDialog(null, "Login Successful");
                  this.dispose();
-                Patient patient = new Patient();
-                patient.setVisible(true);
+                PatientSearch patientsearch = new PatientSearch();
+                patientsearch.setVisible(true);
                 }
 	else
 		JOptionPane.showMessageDialog(null, "Username or Password mismatch ");

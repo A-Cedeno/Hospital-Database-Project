@@ -8,20 +8,20 @@ import java.util.*;
  *
  * @author Georenz
  */
-public class PatientCareUser extends User {
-    public PatientCareUser(){
-    }
+//public class PatientCareUser extends User {
+  //  public PatientCareUser(){
+    //}
     
-    void updateDiagnosis(String s, Patient p) {
-        p.setDiagnosis(s);
-    }
+    //void updateDiagnosis(String s, Patient p) {
+     //   p.setDiagnosis(s);
+   // }
      
-     void updateRoomAllotment(String s, Patient p) {
-         p.setRoomAllotment(s);
-    }
+   //  void updateRoomAllotment(String s, Patient p) {
+     //    p.setRoomAllotment(s);
+   // }
     
-    void updatePatientNotes(String s, Patient p) {
-        p.setPatientNotes(s);
-    }
+  //  void updatePatientNotes(String s, Patient p) {
+    //    p.setPatientNotes(s);
+    //}
     
-}
+//}

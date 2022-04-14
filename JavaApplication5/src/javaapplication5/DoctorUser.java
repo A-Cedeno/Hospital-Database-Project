@@ -8,13 +8,13 @@ package javaapplication5;
  *
  * @author Georenz
  */
-public class DoctorUser extends PatientCareUser  {
+//public class DoctorUser extends PatientCareUser  {
     
-    public DoctorUser(){
+  //  public DoctorUser(){
         
         
-    }
-        String Specialization;
+   // }
+      /*  String Specialization;
         
         void updateDischargeInstructions(){
         }
@@ -26,4 +26,4 @@ public class DoctorUser extends PatientCareUser  {
         void prescribeMedication(){}
         void requestLabTests(){}
          
-}
+}*/

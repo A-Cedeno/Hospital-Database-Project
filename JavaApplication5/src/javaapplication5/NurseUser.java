@@ -8,7 +8,7 @@ package javaapplication5;
  *
  * @author Georenz
  */
-public class NurseUser extends PatientCareUser {
+/*public class NurseUser extends PatientCareUser {
     void assignSpecialist(){}
     
     void createDischargeDate(){}
@@ -22,4 +22,4 @@ public class NurseUser extends PatientCareUser {
     
     void createVitalInformation(){} 
     void updateVitalInformation(){}
-}
+}*/
