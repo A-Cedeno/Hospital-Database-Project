@@ -5,6 +5,13 @@
 
 package javaapplication5;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 /**
  *
  * @author alana
@@ -440,17 +447,25 @@ public class Patient extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //wasnt able to figure out which button this is maybe submit button?
-       // dbconnect.connect();
+       azure.connect();
         
-       // patient tempPatient = dbconnect.getPatientByName(localFirstName,localLastName);
+       
+       if (azure.getPatientByName(localFirstName,localLastName) != null) //if this returns null that means there is no patient with that name 
+       {
+        ResultSet tempPatient = azure.getPatientByName(localFirstName,localLastName);
+       }
+       else 
+       {
+        azure.setPatient();
+       }
+                
         
-        //somehow get the patient ID out of the field 0
-        int tempPatientID = 0;
         String localAddress = localStreetName + localApt + localCity + localState;
-        String[] localPatientInfo = {localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType  };
-        //dbconnect.setPatient(tempPatientID, localPatientInfo);
+        ArrayList<String> localPatientInfo;
+        localPatientInfo.add (localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType);
+        azure.setPatient(tempPatientID, localPatientInfo);
         
-      //  dbconnect.close();
+      azure.close();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void EthnicityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EthnicityActionPerformed
