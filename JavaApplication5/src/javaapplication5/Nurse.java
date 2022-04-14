@@ -259,7 +259,7 @@ public class Nurse extends javax.swing.JFrame {
                 OKActionPerformed(evt);
             }
         });
-        getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 140, 60, 20));
+        getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 150, 60, 20));
 
         jLabel1.setText("Select Patient");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, -1, -1));
