@@ -90,7 +90,6 @@ public class Patient extends javax.swing.JFrame {
         setLocation(new java.awt.Point(500, 360));
         setMaximumSize(new java.awt.Dimension(500, 360));
         setMinimumSize(new java.awt.Dimension(500, 360));
-        setPreferredSize(new java.awt.Dimension(500, 360));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Logout.setText("Logout");
@@ -119,6 +118,11 @@ public class Patient extends javax.swing.JFrame {
         jPanel1.add(LastNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, 20));
 
         Religion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Christianity", "Judaism", "Atheism", "Buddhism", "Hinduism", "Other" }));
+        Religion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReligionActionPerformed(evt);
+            }
+        });
         jPanel1.add(Religion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 100, -1));
 
         ReligionLabel.setText("Religion");
@@ -126,6 +130,11 @@ public class Patient extends javax.swing.JFrame {
 
         Ethnicity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "White", "Hispanic", "Asian", "American Indian", "African American", "Native Hawaiian", "Latino", "Other" }));
         Ethnicity.setToolTipText("");
+        Ethnicity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EthnicityActionPerformed(evt);
+            }
+        });
         jPanel1.add(Ethnicity, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 100, -1));
 
         EthinicityLabel.setText("Ethinicity");
@@ -144,9 +153,33 @@ public class Patient extends javax.swing.JFrame {
 
         FirstNameLabel.setText("First Name");
         jPanel1.add(FirstNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        LastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LastNameActionPerformed(evt);
+            }
+        });
         jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 100, -1));
+
+        FirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FirstNameActionPerformed(evt);
+            }
+        });
         jPanel1.add(FirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 100, -1));
+
+        SSN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SSNActionPerformed(evt);
+            }
+        });
         jPanel1.add(SSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 100, -1));
+
+        DOB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DOBActionPerformed(evt);
+            }
+        });
         jPanel1.add(DOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 100, -1));
 
         Wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 6.jpg"))); // NOI18N
@@ -159,7 +192,19 @@ public class Patient extends javax.swing.JFrame {
         jPanel2.setMinimumSize(new java.awt.Dimension(360, 290));
         jPanel2.setPreferredSize(new java.awt.Dimension(360, 290));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        SecondaryPhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SecondaryPhoneActionPerformed(evt);
+            }
+        });
         jPanel2.add(SecondaryPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 110, -1));
+
+        StreetName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StreetNameActionPerformed(evt);
+            }
+        });
         jPanel2.add(StreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 110, -1));
 
         PrimaryPhoneLabel.setText("Primary Phone Number");
@@ -170,6 +215,12 @@ public class Patient extends javax.swing.JFrame {
 
         StreetNameLabel.setText("Street Name");
         jPanel2.add(StreetNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+
+        Apt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AptActionPerformed(evt);
+            }
+        });
         jPanel2.add(Apt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 110, -1));
 
         AptLabel.setText("Apt/Suite/Unit/Building");
@@ -177,6 +228,12 @@ public class Patient extends javax.swing.JFrame {
 
         EmailLabel.setText("Email");
         jPanel2.add(EmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+
+        Email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmailActionPerformed(evt);
+            }
+        });
         jPanel2.add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 110, -1));
 
         CityLabel.setText("City");
@@ -187,9 +244,33 @@ public class Patient extends javax.swing.JFrame {
 
         ZipLabel.setText("Zip Code");
         jPanel2.add(ZipLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+
+        City.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CityActionPerformed(evt);
+            }
+        });
         jPanel2.add(City, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 110, -1));
+
+        Zip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ZipActionPerformed(evt);
+            }
+        });
         jPanel2.add(Zip, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 110, -1));
+
+        PrimaryPhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PrimaryPhoneActionPerformed(evt);
+            }
+        });
         jPanel2.add(PrimaryPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 110, -1));
+
+        State.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StateActionPerformed(evt);
+            }
+        });
         jPanel2.add(State, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 110, -1));
 
         Wallpaper2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 4.jpg"))); // NOI18N
@@ -208,6 +289,11 @@ public class Patient extends javax.swing.JFrame {
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MedicareCT", "Medicaid Ct", "United Healthcare", "" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 90, -1));
 
         jLabel2.setText("Primary Physician");
@@ -218,16 +304,33 @@ public class Patient extends javax.swing.JFrame {
 
         jLabel4.setText("Allergies");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 20));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 90, 20));
 
         jLabel5.setText("Medical Conditions");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, -1, 20));
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 90, 20));
 
         BloodTypeLabel.setText("Blood Type");
         jPanel3.add(BloodTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, 20));
 
         BloodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "O+", "B+", "AB+", "A-", "O-", "B-", "AB-" }));
+        BloodType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BloodTypeActionPerformed(evt);
+            }
+        });
         jPanel3.add(BloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 100, -1));
 
         SexuallyActiveLabel.setText("Sexually Active?");
@@ -260,7 +363,19 @@ public class Patient extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Weight, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 100, -1));
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 90, -1));
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 90, -1));
 
         Wallpaper3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 5.png"))); // NOI18N
@@ -272,6 +387,11 @@ public class Patient extends javax.swing.JFrame {
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 360));
 
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, -1));
 
         jLabel6.setText("Submit info to Database");
@@ -288,19 +408,141 @@ public class Patient extends javax.swing.JFrame {
 
     private void SexuallyActiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SexuallyActiveActionPerformed
         // TODO add your handling code here:
+        localSexuallyActive = (String) SexuallyActive.getSelectedItem();
+       // System.out.println(SexuallyActive.getSelectedItem());
     }//GEN-LAST:event_SexuallyActiveActionPerformed
 
     private void HeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HeightActionPerformed
         // TODO add your handling code here:
+        localHeight = Height.getText();
     }//GEN-LAST:event_HeightActionPerformed
 
     private void WeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WeightActionPerformed
         // TODO add your handling code here:
+        localWeight = Weight.getText();
     }//GEN-LAST:event_WeightActionPerformed
 
     private void GenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderActionPerformed
         // TODO add your handling code here:
+        localGender = (String) Gender.getSelectedItem();
     }//GEN-LAST:event_GenderActionPerformed
+
+    private void ReligionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReligionActionPerformed
+        // TODO add your handling code here:
+        localReligion = (String) Religion.getSelectedItem();
+    }//GEN-LAST:event_ReligionActionPerformed
+
+    private void FirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameActionPerformed
+        // TODO add your handling code here:
+        localFirstName = FirstName.getText();
+    }//GEN-LAST:event_FirstNameActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //wasnt able to figure out which button this is maybe submit button?
+       // dbconnect.connect();
+        
+       // patient tempPatient = dbconnect.getPatientByName(localFirstName,localLastName);
+        
+        //somehow get the patient ID out of the field 0
+        int tempPatientID = 0;
+        String localAddress = localStreetName + localApt + localCity + localState;
+        String[] localPatientInfo = {localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType  };
+        //dbconnect.setPatient(tempPatientID, localPatientInfo);
+        
+      //  dbconnect.close();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void EthnicityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EthnicityActionPerformed
+        // TODO add your handling code here:
+        localEthnicity = (String) Ethnicity.getSelectedItem();
+    }//GEN-LAST:event_EthnicityActionPerformed
+
+    private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
+        // TODO add your handling code here:
+        localLastName = LastName.getText();
+    }//GEN-LAST:event_LastNameActionPerformed
+
+    private void DOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DOBActionPerformed
+        // TODO add your handling code here:
+        localDOB = DOB.getText();
+    }//GEN-LAST:event_DOBActionPerformed
+
+    private void SSNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SSNActionPerformed
+        // TODO add your handling code here:
+        localSSN = SSN.getText();
+    }//GEN-LAST:event_SSNActionPerformed
+
+    private void PrimaryPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrimaryPhoneActionPerformed
+        // TODO add your handling code here:
+        localPrimaryPhone = PrimaryPhone.getText();
+    }//GEN-LAST:event_PrimaryPhoneActionPerformed
+
+    private void SecondaryPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SecondaryPhoneActionPerformed
+        // TODO add your handling code here:
+        localSecondaryPhone = SecondaryPhone.getText();
+    }//GEN-LAST:event_SecondaryPhoneActionPerformed
+
+    private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
+        // TODO add your handling code here:
+        localEmail = Email.getText();
+    }//GEN-LAST:event_EmailActionPerformed
+
+    private void StreetNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StreetNameActionPerformed
+        // TODO add your handling code here:
+        localStreetName = StreetName.getText();
+    }//GEN-LAST:event_StreetNameActionPerformed
+
+    private void AptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AptActionPerformed
+        // TODO add your handling code here:
+        localApt = Apt.getText();
+    }//GEN-LAST:event_AptActionPerformed
+
+    private void CityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityActionPerformed
+        // TODO add your handling code here:
+        localCity = City.getText();
+    }//GEN-LAST:event_CityActionPerformed
+
+    private void StateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StateActionPerformed
+        // TODO add your handling code here:
+        localState = State.getText();
+    }//GEN-LAST:event_StateActionPerformed
+
+    private void ZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZipActionPerformed
+        // TODO add your handling code here:
+        localZip = Zip.getText();
+    }//GEN-LAST:event_ZipActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here: health insurance
+        localHealthInsurance = (String) jComboBox1.getSelectedItem();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here: primary physician
+        localPrimaryPhysician = jTextField4.getText();
+        
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here: covid vaccine
+        localCovidVaccine = jTextField3.getText();
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here: allergies
+        localAllergies = jTextField2.getText();
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here: medical condition
+        localMedicalCondition = jTextField1.getText();
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void BloodTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BloodTypeActionPerformed
+        // TODO add your handling code here:
+        localBloodType = (String) BloodType.getSelectedItem();
+    }//GEN-LAST:event_BloodTypeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,4 +641,29 @@ public class Patient extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 
+    //adding variables for things because i dont understand what I'm doing
+    private String localSexuallyActive;
+    private String localHeight;
+    private String localWeight;
+    private String localGender;
+    private String localReligion;
+    private String localFirstName;
+    private String localLastName;
+    private String localEthnicity;
+    private String localDOB;
+    private String localSSN;
+    private String localPrimaryPhone;
+    private String localSecondaryPhone;
+    private String localEmail;
+    private String localStreetName;
+    private String localApt;
+    private String localCity;
+    private String localState; 
+    private String localZip;
+    private String localHealthInsurance;
+    private String localPrimaryPhysician;
+    private String localCovidVaccine;
+    private String localAllergies;
+    private String localMedicalCondition;
+    private String localBloodType;
 }
