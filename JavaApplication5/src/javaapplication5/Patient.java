@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Random;
 /**
  *
  * @author alana
@@ -349,14 +350,30 @@ public class Patient extends javax.swing.JFrame {
        }
        else
        {
-     //   azure.setPatient();
+        String localAddress = localStreetName + localApt + localCity + localState;
+        ArrayList<String> localPatientInfo = new ArrayList<String>();
+        localPatientInfo.add(localFirstName);
+        localPatientInfo.add(localLastName);
+        localPatientInfo.add(localDOB);
+        localPatientInfo.add(localGender);
+        localPatientInfo.add(localPrimaryPhysician);
+        localPatientInfo.add(localHealthInsurance);
+        localPatientInfo.add(localCovidVaccine);
+        localPatientInfo.add(localSecondaryPhone);
+        localPatientInfo.add(localAllergies);
+        localPatientInfo.add(localMedicalCondition);
+        localPatientInfo.add(localEthnicity);
+        localPatientInfo.add(localReligion);
+        localPatientInfo.add(localSSN);
+        localPatientInfo.add(localSexuallyActive);
+        localPatientInfo.add(localBloodType);
+        Random patientID = new Random();
+    //    localPatientInfo.add (localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType);
+        azure.setPatient(patientID.nextInt(),localPatientInfo);
        }
 
 
-        String localAddress = localStreetName + localApt + localCity + localState;
-        ArrayList<String> localPatientInfo;
-    //    localPatientInfo.add (localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType);
-   //     azure.setPatient(tempPatientID, localPatientInfo);
+        
 
       azure.close();
     }//GEN-LAST:event_jButton1ActionPerformed
