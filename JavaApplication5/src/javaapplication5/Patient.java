@@ -350,7 +350,7 @@ public class Patient extends javax.swing.JFrame {
         db.connect();
 
 
-       if (db.getPatientByName(localFirstName,localLastName) != null) //if this returns null that means there is no patient with that name
+       if (db.getPatientByName(localFirstName,localLastName) == null) //if this returns null that means there is no patient with that name
        {
         ResultSet tempPatient = db.getPatientByName(localFirstName,localLastName);
        }
