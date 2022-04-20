@@ -314,42 +314,66 @@ public class Patient extends javax.swing.JFrame {
 
     private void SexuallyActiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SexuallyActiveActionPerformed
         // TODO add your handling code here:
-        localSexuallyActive = (String) SexuallyActive.getSelectedItem();
+        //localSexuallyActive = (String) SexuallyActive.getSelectedItem();
        // System.out.println(SexuallyActive.getSelectedItem());
     }//GEN-LAST:event_SexuallyActiveActionPerformed
 
     private void HeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HeightActionPerformed
         // TODO add your handling code here:
-        localHeight = Height.getText();
+       // localHeight = Height.getText();
     }//GEN-LAST:event_HeightActionPerformed
 
     private void WeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WeightActionPerformed
         // TODO add your handling code here:
-        localWeight = Weight.getText();
+        //localWeight = Weight.getText();
     }//GEN-LAST:event_WeightActionPerformed
 
     private void GenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderActionPerformed
         // TODO add your handling code here:
-        localGender = (String) Gender.getSelectedItem();
+        //localGender = (String) Gender.getSelectedItem();
     }//GEN-LAST:event_GenderActionPerformed
 
     private void ReligionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReligionActionPerformed
         // TODO add your handling code here:
-        localReligion = (String) Religion.getSelectedItem();
+        //localReligion = (String) Religion.getSelectedItem();
     }//GEN-LAST:event_ReligionActionPerformed
 
     private void FirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameActionPerformed
         // TODO add your handling code here:
-        localFirstName = FirstName.getText();
+        //localFirstName = FirstName.getText();
     }//GEN-LAST:event_FirstNameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //wasnt able to figure out which button this is maybe submit button?
+        System.out.println("submit button pushed");
        azure db = new azure();
         db.connect();
+        // getting all fields
+        localSexuallyActive = (String) SexuallyActive.getSelectedItem();
+         localHeight = Height.getText();
+         localWeight = Weight.getText();
+         localGender = (String) Gender.getSelectedItem();
+         localReligion = (String) Religion.getSelectedItem();
+         localFirstName = FirstName.getText();
+         localEthnicity = (String) Ethnicity.getSelectedItem();
+         localLastName = LastName.getText();
+         localDOB = DOB.getText();
+         localSSN = SSN.getText();
+         localPrimaryPhone = PrimaryPhone.getText();
+         localSecondaryPhone = SecondaryPhone.getText();
+         localEmail = Email.getText();
+         localStreetName = StreetName.getText();
+         localApt = Apt.getText();
+         localCity = City.getText();
+         localState = State.getText();
+         localZip = Zip.getText();
+         localHealthInsurance = (String) jComboBox1.getSelectedItem();
+         localPrimaryPhysician = jTextField4.getText();
+         localCovidVaccine = jTextField3.getText();
+         localBloodType = (String) BloodType.getSelectedItem();
 
-
+         
        if (db.getPatientByName(localFirstName,localLastName) == null) //if this returns null that means there is no patient with that name
        {
         ResultSet tempPatient = db.getPatientByName(localFirstName,localLastName);
@@ -387,78 +411,78 @@ public class Patient extends javax.swing.JFrame {
 
     private void EthnicityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EthnicityActionPerformed
         // TODO add your handling code here:
-        localEthnicity = (String) Ethnicity.getSelectedItem();
+        //localEthnicity = (String) Ethnicity.getSelectedItem();
     }//GEN-LAST:event_EthnicityActionPerformed
 
     private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
         // TODO add your handling code here:
-        localLastName = LastName.getText();
+        //localLastName = LastName.getText();
     }//GEN-LAST:event_LastNameActionPerformed
 
     private void DOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DOBActionPerformed
         // TODO add your handling code here:
-        localDOB = DOB.getText();
+        //localDOB = DOB.getText();
     }//GEN-LAST:event_DOBActionPerformed
 
     private void SSNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SSNActionPerformed
         // TODO add your handling code here:
-        localSSN = SSN.getText();
+        //localSSN = SSN.getText();
     }//GEN-LAST:event_SSNActionPerformed
 
     private void PrimaryPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrimaryPhoneActionPerformed
         // TODO add your handling code here:
-        localPrimaryPhone = PrimaryPhone.getText();
+        //localPrimaryPhone = PrimaryPhone.getText();
     }//GEN-LAST:event_PrimaryPhoneActionPerformed
 
     private void SecondaryPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SecondaryPhoneActionPerformed
         // TODO add your handling code here:
-        localSecondaryPhone = SecondaryPhone.getText();
+        //localSecondaryPhone = SecondaryPhone.getText();
     }//GEN-LAST:event_SecondaryPhoneActionPerformed
 
     private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
         // TODO add your handling code here:
-        localEmail = Email.getText();
+        //localEmail = Email.getText();
     }//GEN-LAST:event_EmailActionPerformed
 
     private void StreetNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StreetNameActionPerformed
         // TODO add your handling code here:
-        localStreetName = StreetName.getText();
+        //localStreetName = StreetName.getText();
     }//GEN-LAST:event_StreetNameActionPerformed
 
     private void AptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AptActionPerformed
         // TODO add your handling code here:
-        localApt = Apt.getText();
+        //localApt = Apt.getText();
     }//GEN-LAST:event_AptActionPerformed
 
     private void CityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityActionPerformed
         // TODO add your handling code here:
-        localCity = City.getText();
+        //localCity = City.getText();
     }//GEN-LAST:event_CityActionPerformed
 
     private void StateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StateActionPerformed
         // TODO add your handling code here:
-        localState = State.getText();
+        //localState = State.getText();
     }//GEN-LAST:event_StateActionPerformed
 
     private void ZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZipActionPerformed
         // TODO add your handling code here:
-        localZip = Zip.getText();
+        //localZip = Zip.getText();
     }//GEN-LAST:event_ZipActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here: health insurance
-        localHealthInsurance = (String) jComboBox1.getSelectedItem();
+        //localHealthInsurance = (String) jComboBox1.getSelectedItem();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here: primary physician
-        localPrimaryPhysician = jTextField4.getText();
+        //localPrimaryPhysician = jTextField4.getText();
 
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here: covid vaccine
-        localCovidVaccine = jTextField3.getText();
+        //localCovidVaccine = jTextField3.getText();
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -473,7 +497,7 @@ public class Patient extends javax.swing.JFrame {
 
     private void BloodTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BloodTypeActionPerformed
         // TODO add your handling code here:
-        localBloodType = (String) BloodType.getSelectedItem();
+        //localBloodType = (String) BloodType.getSelectedItem();
     }//GEN-LAST:event_BloodTypeActionPerformed
 
     /**
