@@ -346,12 +346,13 @@ public class Patient extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //wasnt able to figure out which button this is maybe submit button?
-       azure.connect();
+       azure db = new azure();
+        db.connect();
 
 
-       if (azure.getPatientByName(localFirstName,localLastName) != null) //if this returns null that means there is no patient with that name
+       if (db.getPatientByName(localFirstName,localLastName) != null) //if this returns null that means there is no patient with that name
        {
-        ResultSet tempPatient = azure.getPatientByName(localFirstName,localLastName);
+        ResultSet tempPatient = db.getPatientByName(localFirstName,localLastName);
        }
        else
        {
@@ -375,13 +376,13 @@ public class Patient extends javax.swing.JFrame {
         localPatientInfo.add(localBloodType);
         Random patientID = new Random();
     //    localPatientInfo.add (localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType);
-        azure.setPatient(patientID.nextInt(),localPatientInfo);
+        db.setPatient(patientID.nextInt(),localPatientInfo);
        }
 
 
         
 
-      azure.close();
+      db.close();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void EthnicityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EthnicityActionPerformed
