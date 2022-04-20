@@ -221,18 +221,26 @@ public class azure
     {
         try
         {
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO Patient VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO Patient VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             
+            stmt.setInt(1, patientID);
             for(int i = 0; i < patientInfo.size(); i++)
             {
-                stmt.setString((i + 1), patientInfo.get(i));
+                System.out.println(patientInfo.get(i));
+                stmt.setString((i + 2), patientInfo.get(i));
             }
             stmt.executeUpdate();
-            System.out.println("Patient Added Successfully!");
 
         } catch (Exception e) {
             error = e.toString();
         }
         
+    }
+
+    
+
+    public static String getError()
+    {
+        return error;
     }
 }
