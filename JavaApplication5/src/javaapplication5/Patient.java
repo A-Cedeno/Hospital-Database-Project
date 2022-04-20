@@ -293,6 +293,11 @@ public class Patient extends javax.swing.JFrame {
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 360));
 
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
         jLabel6.setText("Submit info to Database");
@@ -341,12 +346,13 @@ public class Patient extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //wasnt able to figure out which button this is maybe submit button?
-       azure.connect();
+       azure db = new azure();
+        db.connect();
 
 
-       if (azure.getPatientByName(localFirstName,localLastName) != null) //if this returns null that means there is no patient with that name
+       if (db.getPatientByName(localFirstName,localLastName) != null) //if this returns null that means there is no patient with that name
        {
-        ResultSet tempPatient = azure.getPatientByName(localFirstName,localLastName);
+        ResultSet tempPatient = db.getPatientByName(localFirstName,localLastName);
        }
        else
        {
@@ -354,6 +360,7 @@ public class Patient extends javax.swing.JFrame {
         ArrayList<String> localPatientInfo = new ArrayList<String>();
         localPatientInfo.add(localFirstName);
         localPatientInfo.add(localLastName);
+        localPatientInfo.add(localAddress);
         localPatientInfo.add(localDOB);
         localPatientInfo.add(localGender);
         localPatientInfo.add(localPrimaryPhysician);
@@ -369,13 +376,13 @@ public class Patient extends javax.swing.JFrame {
         localPatientInfo.add(localBloodType);
         Random patientID = new Random();
     //    localPatientInfo.add (localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType);
-        azure.setPatient(patientID.nextInt(),localPatientInfo);
+        db.setPatient(patientID.nextInt(),localPatientInfo);
        }
 
 
         
 
-      azure.close();
+      db.close();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void EthnicityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EthnicityActionPerformed
