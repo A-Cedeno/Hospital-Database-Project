@@ -228,6 +228,7 @@ public class azure
                 stmt.setString((i + 1), patientInfo.get(i));
             }
             stmt.executeUpdate();
+            System.out.println("Patient Added Successfully!");
 
         } catch (Exception e) {
             error = e.toString();
