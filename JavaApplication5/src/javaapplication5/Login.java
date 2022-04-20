@@ -126,7 +126,7 @@ public class Login extends javax.swing.JFrame {
             System.out.println("In reg");
             JOptionPane.showMessageDialog(null, "Login Successful");
              this.dispose();
-            Patient patient = new Patient();
+            PatientSearch patient = new PatientSearch();
             patient.setVisible(true);
             System.out.println("In reg");
         }
