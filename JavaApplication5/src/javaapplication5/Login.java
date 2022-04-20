@@ -84,15 +84,77 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      
+        azure db = new azure();
+        db.connect();
         String Username = jTextField1.getText();
 	String Password = jPasswordField1.getText();
+        String accessLevel = null;
+        try
+        {
+            
+            accessLevel = db.authorize(Integer.parseInt(Username), Password);
+        }
+        catch (Exception e){}
         
+        System.out.println(Integer.parseInt(Username));
+        System.out.println(Password);
+        System.out.println(accessLevel);
+        
+        //accessLevel = "Doctor";
+        
+        if(accessLevel.contains("Doctor"))
+        {
+            System.out.println("In Doctor");
+            JOptionPane.showMessageDialog(null, "Login Successful");
+             this.dispose();
+            Doctor doctor = new Doctor();
+            doctor.setVisible(true);
+        }
+
+        else if(accessLevel.contains("Nurse"))
+        {
+            System.out.println("In nurse");
+            JOptionPane.showMessageDialog(null, "Login Successful");
+             this.dispose();
+            Nurse nurse = new Nurse();
+            nurse.setVisible(true);
+        }
+
+        else if(accessLevel.contains("Registration"))
+        {
+            System.out.println("In reg");
+            JOptionPane.showMessageDialog(null, "Login Successful");
+             this.dispose();
+            Patient patient = new Patient();
+            patient.setVisible(true);
+            System.out.println("In reg");
+        }
+
+        else if(accessLevel.contains("Billing"))
+        {
+            System.out.println("In bill");
+            JOptionPane.showMessageDialog(null, "Login Successful");
+                 this.dispose();
+            Billing billingsearch = new Billing();
+            billingsearch.setVisible(true);
+        }
+
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Username or Password mismatch ");
+        }
+
+        db.close();
+        
+        
+        /*
         if (Username.equals("billing") && Password.equals("bills"))
         {
 		JOptionPane.showMessageDialog(null, "Login Successful");
                  this.dispose();
-                Billing billing = new Billing();
-                billing.setVisible(true);
+                BillingSearch billingsearch = new BillingSearch();
+                billingsearch.setVisible(true);
         }
         else if (Username.equals("nurse") && Password.equals("helps"))
                 {
@@ -112,11 +174,14 @@ public class Login extends javax.swing.JFrame {
                 {
                     JOptionPane.showMessageDialog(null, "Login Successful");
                  this.dispose();
-                PatientSearch patientsearch = new PatientSearch();
-                patientsearch.setVisible(true);
+                Patient patient = new Patient();
+                patient.setVisible(true);
                 }
 	else
 		JOptionPane.showMessageDialog(null, "Username or Password mismatch ");
+        */
+
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
