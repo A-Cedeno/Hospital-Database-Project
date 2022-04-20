@@ -267,7 +267,19 @@ public class Patient extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Weight, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 90, -1));
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 90, -1));
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 90, -1));
 
         jTextArea1.setColumns(20);
@@ -280,6 +292,11 @@ public class Patient extends javax.swing.JFrame {
         jTextArea2.setColumns(20);
         jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
+        jTextArea2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextArea2MouseClicked(evt);
+            }
+        });
         MedicalConditions1.setViewportView(jTextArea2);
 
         jPanel3.add(MedicalConditions1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 210, 70));
@@ -500,6 +517,19 @@ public class Patient extends javax.swing.JFrame {
         //localBloodType = (String) BloodType.getSelectedItem();
     }//GEN-LAST:event_BloodTypeActionPerformed
 
+    private void jTextArea2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextArea2MouseClicked
+
+    private void jTextArea1ActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        
+    }
+    
+     private void jTextArea2ActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        
+    }
     /**
      * @param args the command line arguments
      */
