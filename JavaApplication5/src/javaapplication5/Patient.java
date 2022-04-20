@@ -293,6 +293,11 @@ public class Patient extends javax.swing.JFrame {
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 360));
 
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
         jLabel6.setText("Submit info to Database");
@@ -354,6 +359,7 @@ public class Patient extends javax.swing.JFrame {
         ArrayList<String> localPatientInfo = new ArrayList<String>();
         localPatientInfo.add(localFirstName);
         localPatientInfo.add(localLastName);
+        localPatientInfo.add(localAddress);
         localPatientInfo.add(localDOB);
         localPatientInfo.add(localGender);
         localPatientInfo.add(localPrimaryPhysician);
