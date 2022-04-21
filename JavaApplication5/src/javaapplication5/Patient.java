@@ -389,6 +389,9 @@ public class Patient extends javax.swing.JFrame {
          localPrimaryPhysician = jTextField4.getText();
          localCovidVaccine = jTextField3.getText();
          localBloodType = (String) BloodType.getSelectedItem();
+         localAllergies = jTextArea2.getText();
+         localMedicalCondition = jTextArea1.getText();
+         
 
          
        if (db.getPatientByName(localFirstName,localLastName) == null) //if this returns null that means there is no patient with that name
@@ -504,7 +507,7 @@ public class Patient extends javax.swing.JFrame {
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here: allergies
-      //  localAllergies = jTextField2.getText();
+      //  localAllergies = jTextArea2.getText();
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
