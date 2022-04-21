@@ -147,6 +147,7 @@ public class Doctor extends javax.swing.JFrame {
         jPanel2.add(BloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 90, -1));
 
         Allergies.setColumns(20);
+        Allergies.setLineWrap(true);
         Allergies.setRows(5);
         jScrollPane1.setViewportView(Allergies);
 
