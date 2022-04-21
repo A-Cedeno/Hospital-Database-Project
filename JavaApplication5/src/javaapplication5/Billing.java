@@ -669,6 +669,7 @@ public class Billing extends javax.swing.JFrame {
         System.out.println("submit button pushed");
         azure db = new azure();
         db.connect();
+        db.close();
     }//GEN-LAST:event_GenerateBillActionPerformed
     /**
      * @param args the command line arguments
