@@ -637,8 +637,8 @@ public class Billing extends javax.swing.JFrame {
         localHeight = Height.getText();
         localAge = Age.getText();
         localWeight = Weight.getText();
-        localVisits = jList2.getSelectedValue(); //jList2
-        localMedications =  ; //jList3 this is an array of values
+        localVisits = jList2.getSelectedValue(); //jList2 gets current selected value
+        localMedications = Medication.getSelectedValues(); //jList3 this is an array of values
         localVaccines; //jList1
         localAllergies; //jlist4
         localBillNum;
