@@ -436,9 +436,19 @@ public class Billing extends javax.swing.JFrame {
         jPanel3.add(TotalLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
         Save.setText("Save");
+        Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveActionPerformed(evt);
+            }
+        });
         jPanel3.add(Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
 
         GenerateBill.setText("Generate Bill");
+        GenerateBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerateBillActionPerformed(evt);
+            }
+        });
         jPanel3.add(GenerateBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
 
         BillNum.addActionListener(new java.awt.event.ActionListener() {
@@ -606,6 +616,58 @@ public class Billing extends javax.swing.JFrame {
         Billing billing = new Billing();
         billing.setVisible(true);
     }//GEN-LAST:event_OKActionPerformed
+
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+        // TODO add your handling code here:
+        // get all the values then push bill to DB
+        localFirstName = FirstName.getText();
+        localLastName = LastName.getText();
+        localDOB = DOB.getText();
+        localMaritalStatus = MaritalStatus.getText();
+        localGender = Gender.getText();
+        localPregnant = Pregnant.getText();
+        localPrimaryPhone = PrimaryPhone.getText();
+        localSecondaryPhone = SecondaryPhone.getText();
+        localEmail = Email.getText();
+        localAddress = Address.getText(); 
+        localApt = Apt.getText();
+        localCity = City.getText();
+        localState = State.getText();
+        localZip = Zip.getText();
+        localHeight = Height.getText();
+        localAge = Age.getText();
+        localWeight = Weight.getText();
+        localVisits = jList2.getSelectedValue(); //jList2
+        localMedications =  ; //jList3 this is an array of values
+        localVaccines; //jList1
+        localAllergies; //jlist4
+        localBillNum;
+        localFirstNameBill;
+        localLastNameBill;
+        localDateAdmitted;
+        localDateReleased;
+        localBillable; //jList5
+        localTax;
+        localDueDate;
+        localTotal;
+        
+        System.out.println("Save button pushed");
+        azure db = new azure();
+        db.connect();
+        
+        //actual submitting happens here
+        db.setBill(int visitID, int BillID, int Charge);
+        
+        db.close();
+
+    }//GEN-LAST:event_SaveActionPerformed
+
+    private void GenerateBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateBillActionPerformed
+        // TODO add your handling code here:
+        System.out.println("submit button pushed");
+        azure db = new azure();
+        db.connect();
+    }//GEN-LAST:event_GenerateBillActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -725,4 +787,36 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
+
+private String localFirstName;
+private String localLastName;
+private String localDOB;
+private String localMaritalStatus;
+private String localGender;
+private String localPregnant;
+private String localPrimaryPhone;
+private String localSecondaryPhone;
+private String localEmail;
+private String localAddress; 
+private String localApt;
+private String localCity;
+private String localState;
+private String localZip;
+private String localHeight;
+private String localAge;
+private String localWeight;
+private String localVisits; //jList2
+private String localMedications; //jList3
+private String localVaccines; //jList1
+private String localAllergies; //jlist4
+private String localBillNum;
+private String localFirstNameBill;
+private String localLastNameBill;
+private String localDateAdmitted;
+private String localDateReleased;
+private String localBillable; //jList5
+private String localTax;
+private String localDueDate;
+private String localTotal;
+
 }

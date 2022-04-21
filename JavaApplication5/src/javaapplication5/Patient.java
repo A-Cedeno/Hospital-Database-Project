@@ -364,7 +364,7 @@ public class Patient extends javax.swing.JFrame {
         // TODO add your handling code here:
         //wasnt able to figure out which button this is maybe submit button?
         System.out.println("submit button pushed");
-       azure db = new azure();
+        azure db = new azure();
         db.connect();
         // getting all fields
         localSexuallyActive = (String) SexuallyActive.getSelectedItem();
