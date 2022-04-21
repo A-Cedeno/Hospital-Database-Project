@@ -4,6 +4,14 @@
  */
 package javaapplication5;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Random;
 /**
  *
  * @author alana
@@ -41,9 +49,9 @@ public class Doctor extends javax.swing.JFrame {
         BloodTypeLabel = new javax.swing.JLabel();
         SexuallyActiveLabel = new javax.swing.JLabel();
         AllergiesLabel = new javax.swing.JLabel();
-        Allergies = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
         BloodType = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Allergies = new javax.swing.JTextArea();
         Wallpaper1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         Medication = new javax.swing.JScrollPane();
@@ -70,13 +78,13 @@ public class Doctor extends javax.swing.JFrame {
         Religion = new javax.swing.JComboBox<>();
         Wallpaper3 = new javax.swing.JLabel();
         DiagnosisLabel = new javax.swing.JLabel();
-        Notes = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Notes = new javax.swing.JTextArea();
         NotesLabel = new javax.swing.JLabel();
         Diagnosis = new javax.swing.JTextField();
         PatientSelect = new javax.swing.JScrollPane();
         jList6 = new javax.swing.JList<>();
-        OK = new javax.swing.JButton();
+        Submit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -135,18 +143,14 @@ public class Doctor extends javax.swing.JFrame {
         AllergiesLabel.setText("Allergies");
         jPanel2.add(AllergiesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Penicillin", "Aspirin" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList3.setToolTipText("");
-        Allergies.setViewportView(jList3);
-
-        jPanel2.add(Allergies, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 270, 90));
-
         BloodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "O+", "B+", "AB+", "A-", "O-", "B-", "AB-" }));
         jPanel2.add(BloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 90, -1));
+
+        Allergies.setColumns(20);
+        Allergies.setRows(5);
+        jScrollPane1.setViewportView(Allergies);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 270, 100));
 
         Wallpaper1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 6.jpg"))); // NOI18N
         Wallpaper1.setText("jLabel17");
@@ -220,6 +224,12 @@ public class Doctor extends javax.swing.JFrame {
         FirstNameLabel.setText("First Name");
         jPanel1.add(FirstNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, -1));
         jPanel1.add(SSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 90, -1));
+
+        FirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FirstNameActionPerformed(evt);
+            }
+        });
         jPanel1.add(FirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 90, -1));
         jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 90, -1));
         jPanel1.add(DOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 90, -1));
@@ -247,13 +257,13 @@ public class Doctor extends javax.swing.JFrame {
         DiagnosisLabel.setText("Diagnosis");
         getContentPane().add(DiagnosisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        Notes.setViewportView(jTextArea1);
+        Notes.setColumns(20);
+        Notes.setLineWrap(true);
+        Notes.setRows(5);
+        Notes.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jScrollPane2.setViewportView(Notes);
 
-        getContentPane().add(Notes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 290, 100));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 290, 100));
 
         NotesLabel.setText("Notes");
         getContentPane().add(NotesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
@@ -269,18 +279,18 @@ public class Doctor extends javax.swing.JFrame {
 
         getContentPane().add(PatientSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 120, 90));
 
-        OK.setText("Ok");
-        OK.addMouseListener(new java.awt.event.MouseAdapter() {
+        Submit.setText("Submit");
+        Submit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                OKMouseClicked(evt);
+                SubmitMouseClicked(evt);
             }
         });
-        OK.addActionListener(new java.awt.event.ActionListener() {
+        Submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OKActionPerformed(evt);
+                SubmitActionPerformed(evt);
             }
         });
-        getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, 60, 20));
+        getContentPane().add(Submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 150, 70, 20));
 
         jLabel1.setText("Select Patient");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
@@ -310,15 +320,66 @@ public class Doctor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_HeightActionPerformed
 
-    private void OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKMouseClicked
+    private void SubmitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SubmitMouseClicked
 
-    }//GEN-LAST:event_OKMouseClicked
+    }//GEN-LAST:event_SubmitMouseClicked
 
-    private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
-        this.dispose();
-        Billing billing = new Billing();
-        billing.setVisible(true);
-    }//GEN-LAST:event_OKActionPerformed
+    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+         System.out.println("submit button pushed");
+       azure db = new azure();
+        db.connect(); 
+          localBloodPressure = (String) BloodPressure.getText();
+          localHeartRate = HeartRate.getText();
+          localBloodType = (String) BloodType.getSelectedItem();
+          localFirstName = FirstName.getText();
+          localLastName = LastName.getText();
+          localSexuallyActive = (String) SexuallyActive.getSelectedItem();
+          localHeight = Height.getText();
+          localWeight = Weight.getText();
+          localGender = (String) Gender.getSelectedItem();
+          localReligion = (String) Religion.getSelectedItem();
+          localEthnicity = (String) Ethnicity.getSelectedItem();
+          localDOB = DOB.getText();
+          localSSN = SSN.getText();
+          localAllergies = Allergies.getText();
+          localNotes = Notes.getText();
+          localDiagnosis = Diagnosis.getText();
+        
+       if (db.getPatientByName(localFirstName,localLastName) == null) //if this returns null that means there is no patient with that name
+       {
+        ResultSet tempPatient = db.getPatientByName(localFirstName,localLastName);
+       }
+       else
+       {
+        ArrayList<String> localPatientInfo = new ArrayList<String>();
+        localPatientInfo.add(localFirstName);
+        localPatientInfo.add(localLastName);
+        localPatientInfo.add(localDOB);
+        localPatientInfo.add(localGender);
+        localPatientInfo.add(localAllergies);
+        localPatientInfo.add(localEthnicity);
+        localPatientInfo.add(localReligion);
+        localPatientInfo.add(localSSN);
+        localPatientInfo.add(localSexuallyActive);
+        localPatientInfo.add(localBloodType);
+        localPatientInfo.add(localNotes);
+        localPatientInfo.add(localHeartRate);
+        localPatientInfo.add(localBloodPressure);
+        localPatientInfo.add(localHeight);
+        localPatientInfo.add(localWeight);
+        localPatientInfo.add(localDiagnosis);
+        
+        Random patientID = new Random();
+    //    localPatientInfo.add (localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType);
+        db.setPatient(patientID.nextInt(),localPatientInfo);
+       }
+
+      db.close();
+    }//GEN-LAST:event_SubmitActionPerformed
+
+    private void FirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,7 +417,7 @@ public class Doctor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane Allergies;
+    private javax.swing.JTextArea Allergies;
     private javax.swing.JLabel AllergiesLabel;
     private javax.swing.JTextField BloodPressure;
     private javax.swing.JLabel BloodPressureLabel;
@@ -381,9 +442,8 @@ public class Doctor extends javax.swing.JFrame {
     private javax.swing.JButton Logout;
     private javax.swing.JScrollPane Medication;
     private javax.swing.JLabel MedicationLabel;
-    private javax.swing.JScrollPane Notes;
+    private javax.swing.JTextArea Notes;
     private javax.swing.JLabel NotesLabel;
-    private javax.swing.JButton OK;
     private javax.swing.JScrollPane PatientSelect;
     private javax.swing.JComboBox<String> Religion;
     private javax.swing.JLabel ReligionLabel;
@@ -391,6 +451,7 @@ public class Doctor extends javax.swing.JFrame {
     private javax.swing.JLabel SSNLabel;
     private javax.swing.JComboBox<String> SexuallyActive;
     private javax.swing.JLabel SexuallyActiveLabel;
+    private javax.swing.JButton Submit;
     private javax.swing.JLabel TestLabel;
     private javax.swing.JLabel Wallpaper1;
     private javax.swing.JLabel Wallpaper2;
@@ -401,13 +462,30 @@ public class Doctor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JList<String> jList6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+
+    private String localSexuallyActive;
+    private String localHeight;
+    private String localWeight;
+    private String localGender;
+    private String localReligion;
+    private String localFirstName;
+    private String localLastName;
+    private String localEthnicity;
+    private String localDOB;
+    private String localSSN;
+    private String localAllergies;
+    private String localBloodType;
+    private String localBloodPressure;
+    private String localHeartRate;
+    private String localNotes;
+    private String localDiagnosis;
 }
