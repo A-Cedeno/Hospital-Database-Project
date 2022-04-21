@@ -391,7 +391,6 @@ public class Patient extends javax.swing.JFrame {
          localBloodType = (String) BloodType.getSelectedItem();
          localAllergies = jTextArea2.getText();
          localMedicalCondition = jTextArea1.getText();
-         
 
          
        if (db.getPatientByName(localFirstName,localLastName) == null) //if this returns null that means there is no patient with that name

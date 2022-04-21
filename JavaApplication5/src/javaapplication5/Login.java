@@ -103,7 +103,7 @@ public class Login extends javax.swing.JFrame {
         
         //accessLevel = "Doctor";
         
-        if(accessLevel.contains("Doctor"))
+        if(accessLevel!= null && accessLevel.contains("Doctor"))
         {
             System.out.println("In Doctor");
             JOptionPane.showMessageDialog(null, "Login Successful");
@@ -112,7 +112,7 @@ public class Login extends javax.swing.JFrame {
             doctor.setVisible(true);
         }
 
-        else if(accessLevel.contains("Nurse"))
+        else if(accessLevel!= null && accessLevel.contains("Nurse"))
         {
             System.out.println("In nurse");
             JOptionPane.showMessageDialog(null, "Login Successful");
@@ -121,7 +121,7 @@ public class Login extends javax.swing.JFrame {
             nurse.setVisible(true);
         }
 
-        else if(accessLevel.contains("Registration"))
+        else if(accessLevel!= null && accessLevel.contains("Registration"))
         {
             System.out.println("In reg");
             JOptionPane.showMessageDialog(null, "Login Successful");
@@ -131,7 +131,7 @@ public class Login extends javax.swing.JFrame {
             System.out.println("In reg");
         }
 
-        else if(accessLevel.contains("Billing"))
+        else if(accessLevel!= null && accessLevel.contains("Billing"))
         {
             System.out.println("In bill");
             JOptionPane.showMessageDialog(null, "Login Successful");

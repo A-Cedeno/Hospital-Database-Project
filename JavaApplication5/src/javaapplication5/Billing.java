@@ -638,6 +638,7 @@ public class Billing extends javax.swing.JFrame {
         localAge = Age.getText();
         localWeight = Weight.getText();
         localVisits = jList2.getSelectedValue(); //jList2
+/*
         localMedications =  ; //jList3 this is an array of values
         localVaccines; //jList1
         localAllergies; //jlist4
@@ -650,6 +651,7 @@ public class Billing extends javax.swing.JFrame {
         localTax;
         localDueDate;
         localTotal;
+
         
         System.out.println("Save button pushed");
         azure db = new azure();
@@ -659,6 +661,7 @@ public class Billing extends javax.swing.JFrame {
         db.setBill(int visitID, int BillID, int Charge);
         
         db.close();
+*/
 
     }//GEN-LAST:event_SaveActionPerformed
 
