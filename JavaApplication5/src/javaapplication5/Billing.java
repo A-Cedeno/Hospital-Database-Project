@@ -4,6 +4,8 @@
  */
 package javaapplication5;
 
+import java.util.Random;
+
 /**
  *
  * @author alana
@@ -638,25 +640,25 @@ public class Billing extends javax.swing.JFrame {
         localAge = Age.getText();
         localWeight = Weight.getText();
         localVisits = jList2.getSelectedValue(); //jList2 gets current selected value
-        localMedications = Medication.getSelectedValues(); //jList3 this is an array of values
-        localVaccines; //jList1
-        localAllergies; //jlist4
-        localBillNum;
-        localFirstNameBill;
-        localLastNameBill;
-        localDateAdmitted;
-        localDateReleased;
-        localBillable; //jList5
-        localTax;
-        localDueDate;
-        localTotal;
-        
+        localMedications = jList3.getSelectedValue(); //jList3 this is an array of values
+        localVaccines = jList1.getSelectedValue(); //jList1
+        localAllergies = jList4.getSelectedValue(); //jlist4
+        localBillNum = BillNum.getText();
+        localFirstNameBill = FirstNameBill.getText();
+        localLastNameBill = LastNameBill.getText();
+        localDateAdmitted = DateAdmitted.getText();
+        localDateReleased = DateReleased.getText();
+        localBillable = jList5.getSelectedValue(); //jList5
+        localTax= Tax.getText();
+        localDueDate = DueDate.getText();
+        localTotal= Total.getText();
+        Random randy = new Random();
         System.out.println("Save button pushed");
         azure db = new azure();
         db.connect();
-        
+        int charge = 420;
         //actual submitting happens here
-        db.setBill(int visitID, int BillID, int Charge);
+        db.setBill(randy.nextInt(), randy.nextInt(), charge);
         
         db.close();
 
