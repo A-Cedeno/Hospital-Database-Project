@@ -307,6 +307,29 @@ public class azure
         return null;  
     }
     
+    public static void setVisit(int patientID, ArrayList<String> patientInfo)
+    {
+        try
+        {
+            int visitID = (int)(Math.random()*(100000 - 1 + 1) + 1);
+            //patientid, visitid, visit_date, patient_note, discharge_instructions, bloodpressure, heart rate, height, weight, diagnosis, prescriptions, tests, admittancestatus, admittancedate, dischargedate
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO Patient VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            
+            stmt.setInt(1, patientID);
+            stmt.setInt(2, visitID);
+            for(int i = 0; i < patientInfo.size(); i++)
+            {
+                System.out.println(patientInfo.get(i));
+                stmt.setString((i + 3), patientInfo.get(i));
+            }
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            error = e.toString();
+        }
+        
+    }
+
     public static void setPatient(int patientID, ArrayList<String> patientInfo)
     {
         try
@@ -327,6 +350,27 @@ public class azure
         
     }
 
+    public static int getPatientCount()
+    {
+        try
+        {
+            PreparedStatement stmt = con.prepareStatement("SELECT COUNT(*) FROM Patient");
+            ResultSet list = stmt.executeQuery();
+
+            //list.next();
+            list.next();
+            System.out.println("In get Paitent Count");
+            System.out.println(list.getInt(1));
+            return list.getInt(1);
+
+        } catch (Exception e) {
+            
+            error = e.toString();
+            System.out.println(error);
+        }
+
+        return 0;
+    }
     
 
     public static String getError()

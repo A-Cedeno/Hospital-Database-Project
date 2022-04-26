@@ -4,18 +4,28 @@
  */
 package javaapplication5;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author alana
  */
 public class ViewPatient extends javax.swing.JFrame {
 
+    static azure db = new azure();
+    static int count;
     /**
      * Creates new form AddPatient
      */
-    public ViewPatient() {
+    public ViewPatient() throws SQLException {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); 
+        setCount();
+        setPatient();
+
+        
     }
 
     /**
@@ -103,10 +113,60 @@ public class ViewPatient extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewPatient().setVisible(true);
+            public void run() 
+            {
+                try
+                {
+                    new ViewPatient().setVisible(true);
+                }
+                catch(Exception e)
+                {
+                    
+                }
             }
         });
+    }
+
+    private void setPatient() throws SQLException
+    {
+        db.connect();
+        DefaultListModel listModel = new DefaultListModel();
+
+        ResultSet list = db.getPatientList();
+        //list.next();
+        System.out.println("here");
+        System.out.println(count);
+        while(list.next())
+        {
+            String name = (list.getString(2) + list.getString(3));
+            System.out.println(name);
+            //System.out.println("boop");
+            listModel.addElement(name);
+            
+            //listModel.addElement();
+        }
+        System.out.println(listModel.toString());
+        jList1 = new javax.swing.JList<>();
+        jList1.setModel()
+        {
+        }
+        /*
+        jList1.setModel(new javax.swing.AbstractListModel<String>() 
+        {
+            String[] strings = { "John Doe", "Jane Bismark" };
+            strings = {};
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        */
+        db.close();
+    }
+
+    public static void setCount()
+    {
+        db.connect();
+        count = db.getPatientCount();
+        db.close();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,6 +4,10 @@
  */
 package javaapplication5;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author alana
@@ -63,7 +67,14 @@ public class PatientSearch extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
                 this.dispose();
-                ViewPatient viewpatient = new ViewPatient();
+                ViewPatient viewpatient = null;
+                try 
+                {
+                    viewpatient = new ViewPatient();
+                } catch (SQLException ex) 
+                {
+
+                }
                 viewpatient.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
