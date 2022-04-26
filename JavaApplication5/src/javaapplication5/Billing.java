@@ -4,7 +4,10 @@
  */
 package javaapplication5;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -622,6 +625,9 @@ public class Billing extends javax.swing.JFrame {
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
         // get all the values then push bill to DB
+        int daysStayed;
+                
+        
         localFirstName = FirstName.getText();
         localLastName = LastName.getText();
         localDOB = DOB.getText();
@@ -646,8 +652,14 @@ public class Billing extends javax.swing.JFrame {
         localBillNum = BillNum.getText();
         localFirstNameBill = FirstNameBill.getText();
         localLastNameBill = LastNameBill.getText();
-        localDateAdmitted = DateAdmitted.getText();
-        localDateReleased = DateReleased.getText();
+        
+        //super ugly parsing for number of days stayed
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM ddd");      
+        localDateAdmitted = sdf.parse(DateAdmitted.getText());
+        localDateReleased = sdf.parse(DateReleased.getText());
+        long t = localDateAdmitted.getTime() - localDateReleased.getTime();
+        daysStayed = (int) TimeUnit.DAYS.convert(t,TimeUnit.MILLISECONDS);
+        
         localBillable = jList5.getSelectedValue(); //jList5
         localTax= Tax.getText();
         localDueDate = DueDate.getText();
@@ -656,7 +668,7 @@ public class Billing extends javax.swing.JFrame {
         System.out.println("Save button pushed");
         azure db = new azure();
         db.connect();
-        int charge = 420;
+        int charge = daysStayed * 1000;
         //actual submitting happens here
         db.setBill(randy.nextInt(), randy.nextInt(), charge);
         
@@ -815,8 +827,8 @@ private String localAllergies; //jlist4
 private String localBillNum;
 private String localFirstNameBill;
 private String localLastNameBill;
-private String localDateAdmitted;
-private String localDateReleased;
+private Date localDateAdmitted;
+private Date localDateReleased;
 private String localBillable; //jList5
 private String localTax;
 private String localDueDate;
