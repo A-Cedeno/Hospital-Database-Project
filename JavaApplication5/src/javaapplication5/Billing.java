@@ -4,10 +4,13 @@
  */
 package javaapplication5;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -654,11 +657,20 @@ public class Billing extends javax.swing.JFrame {
         localLastNameBill = LastNameBill.getText();
         
         //super ugly parsing for number of days stayed
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM ddd");      
-        localDateAdmitted = sdf.parse(DateAdmitted.getText());
-        localDateReleased = sdf.parse(DateReleased.getText());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM ddd");   
+        
+        
+        
+        try {
+            localDateReleased = sdf.parse(DateReleased.getText());
+            localDateAdmitted = sdf.parse(DateAdmitted.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(Billing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         long t = localDateAdmitted.getTime() - localDateReleased.getTime();
         daysStayed = (int) TimeUnit.DAYS.convert(t,TimeUnit.MILLISECONDS);
+       
         
         localBillable = jList5.getSelectedValue(); //jList5
         localTax= Tax.getText();
