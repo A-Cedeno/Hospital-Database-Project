@@ -24,6 +24,47 @@ public class Patient extends javax.swing.JFrame {
         initComponents();
     }
 
+    public Patient(ResultSet patientInfo) throws SQLException
+    {
+        System.out.println("In here2");
+        
+
+        System.out.println("In here3");
+        initComponents();
+        System.out.println("here 4");
+
+        FirstName.setText(patientInfo.getString(2).replaceAll("\\s", ""));
+        
+        LastName.setText(patientInfo.getString(3).replaceAll("\\s", ""));
+        DOB.setText(patientInfo.getString(4));
+        Gender.setSelectedItem(patientInfo.getString(5).replaceAll("\\s", ""));
+        //Gender.set
+        //physician
+        jTextField4.setText(patientInfo.getString(6).replaceAll("\\s", ""));
+        jComboBox1.setSelectedItem(patientInfo.getString(7).replaceAll("\\s", ""));
+        //covid vaccine
+        jTextField3.setText(patientInfo.getString(8).replaceAll("\\s" + "\\s", ""));
+        SecondaryPhone.setText(patientInfo.getString(9).replaceAll("\\s", ""));
+        jTextArea2.setText(patientInfo.getString(10).replaceAll("\\s", ""));
+        jTextArea1.setText(patientInfo.getString(11).replaceAll("\\s", ""));
+        Ethnicity.setSelectedItem(patientInfo.getString(12).replaceAll("\\s", ""));
+        
+
+        //System.out.println(patientInfo.getString(14));
+        //Object religion = patientInfo.getString(14);
+        Religion.setSelectedItem(patientInfo.getString(13).replaceAll("\\s", ""));
+        SSN.setText(patientInfo.getString(14).replaceAll("\\s", ""));
+        SexuallyActive.setSelectedItem(patientInfo.getString(15).replaceAll("\\s", ""));
+        BloodType.setSelectedItem(patientInfo.getString(16).replaceAll("\\s", ""));
+        City.setText(patientInfo.getString(17).replaceAll("\\s", ""));
+        StreetName.setText(patientInfo.getString(18).replaceAll("\\s", ""));
+        State.setText(patientInfo.getString(19).replaceAll("\\s", ""));
+        Zip.setText(patientInfo.getString(20).replaceAll("\\s", ""));
+        Email.setText(patientInfo.getString(21).replaceAll("\\s", ""));
+        PrimaryPhone.setText(patientInfo.getString(22).replaceAll("\\s", ""));
+        
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -98,7 +139,6 @@ public class Patient extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusCycleRoot(false);
         setLocation(new java.awt.Point(500, 360));
-        setMaximumSize(new java.awt.Dimension(500, 360));
         setMinimumSize(new java.awt.Dimension(500, 360));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -168,6 +208,12 @@ public class Patient extends javax.swing.JFrame {
         jPanel2.setMinimumSize(new java.awt.Dimension(360, 290));
         jPanel2.setPreferredSize(new java.awt.Dimension(360, 290));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        SecondaryPhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SecondaryPhoneActionPerformed(evt);
+            }
+        });
         jPanel2.add(SecondaryPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 110, -1));
         jPanel2.add(StreetName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 110, -1));
 
@@ -394,17 +440,19 @@ public class Patient extends javax.swing.JFrame {
          
 
          
-       if (db.getPatientByName(localFirstName,localLastName) == null) //if this returns null that means there is no patient with that name
+       if (db.getPatientByName(localFirstName,localLastName) != null) //if this returns null that means there is no patient with that name
        {
-        ResultSet tempPatient = db.getPatientByName(localFirstName,localLastName);
+            System.out.println("In here");
+            ResultSet tempPatient = db.getPatientByName(localFirstName,localLastName);
+            //add alert that says that this patient cannot be added because they already exist in the db
        }
        else
        {
-        String localAddress = localStreetName + localApt + localCity + localState;
+        //String localAddress = localStreetName + localApt + localCity + localState;
         ArrayList<String> localPatientInfo = new ArrayList<String>();
         localPatientInfo.add(localFirstName);
         localPatientInfo.add(localLastName);
-        localPatientInfo.add(localAddress);
+        //localPatientInfo.add(localAddress);
         localPatientInfo.add(localDOB);
         localPatientInfo.add(localGender);
         localPatientInfo.add(localPrimaryPhysician);
@@ -418,6 +466,12 @@ public class Patient extends javax.swing.JFrame {
         localPatientInfo.add(localSSN);
         localPatientInfo.add(localSexuallyActive);
         localPatientInfo.add(localBloodType);
+        localPatientInfo.add(localCity);
+        localPatientInfo.add(localStreetName);
+        localPatientInfo.add(localState);
+        localPatientInfo.add(localZip);
+        localPatientInfo.add(localPrimaryPhone);
+        localPatientInfo.add(localEmail);
         Random patientID = new Random();
     //    localPatientInfo.add (localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType);
         db.setPatient(patientID.nextInt(),localPatientInfo);

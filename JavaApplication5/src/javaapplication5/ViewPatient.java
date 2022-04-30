@@ -22,11 +22,18 @@ public class ViewPatient extends javax.swing.JFrame {
     public ViewPatient() throws SQLException {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); 
-        setCount();
-        setPatient();
+        count = setCount();
+        jList1.setModel(setPatient());
 
         
     }
+
+    /*
+    public ViewPatient(int random)
+    {
+        
+    }
+*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,8 +87,27 @@ public class ViewPatient extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                 this.dispose();
-                Patient patient = new Patient();
-                patient.setVisible(true);
+                String name = jList1.getSelectedValue();
+                //String firstName
+                String[] names = name.split("[^A-Za-z]+");
+                String firstName = names[0];
+                System.out.println(firstName);
+                String lastName = names[1];
+                System.out.println(lastName);
+
+                db.connect();
+                ResultSet patientInfo = db.getPatientByName(firstName, lastName);
+                try
+                {
+                    System.out.println("In here");
+                    Patient patient = new Patient(patientInfo);
+                    patient.setVisible(true);
+                }
+                catch (Exception e)
+                {
+                }
+                db.close();
+                
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -127,7 +153,7 @@ public class ViewPatient extends javax.swing.JFrame {
         });
     }
 
-    private void setPatient() throws SQLException
+    public DefaultListModel setPatient() throws SQLException
     {
         db.connect();
         DefaultListModel listModel = new DefaultListModel();
@@ -136,37 +162,42 @@ public class ViewPatient extends javax.swing.JFrame {
         //list.next();
         System.out.println("here");
         System.out.println(count);
-        while(list.next())
+        do
         {
-            String name = (list.getString(2) + list.getString(3));
+            String name = (list.getString(2).replaceAll("\\s", "") + " " + list.getString(3).replaceAll("\\s", ""));
             System.out.println(name);
             //System.out.println("boop");
             listModel.addElement(name);
             
             //listModel.addElement();
-        }
+        }while(list.next());
         System.out.println(listModel.toString());
-        jList1 = new javax.swing.JList<>();
-        jList1.setModel()
-        {
-        }
+
+        //jList1.setModel(listModel);
+        
+
+        //System.out.println(jList1.get);
+        
+
         /*
         jList1.setModel(new javax.swing.AbstractListModel<String>() 
         {
             String[] strings = { "John Doe", "Jane Bismark" };
-            strings = {};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        */
+*/
+        
         db.close();
+        return listModel;
     }
 
-    public static void setCount()
+    public static int setCount()
     {
         db.connect();
         count = db.getPatientCount();
         db.close();
+        return count;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

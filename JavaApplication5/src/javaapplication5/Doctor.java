@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.DefaultListModel;
 /**
  *
  * @author alana
@@ -21,8 +22,14 @@ public class Doctor extends javax.swing.JFrame {
     /**
      * Creates new form Doctor
      */
-    public Doctor() {
+    public Doctor() throws SQLException {
         initComponents();
+
+        azure db = new azure();
+        ViewPatient viewPatient = new ViewPatient();
+        
+
+        jList6.setModel(viewPatient.setPatient());
     }
 
     /**
@@ -90,9 +97,7 @@ public class Doctor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 250));
-        setMaximumSize(new java.awt.Dimension(870, 350));
         setMinimumSize(new java.awt.Dimension(870, 350));
-        setPreferredSize(new java.awt.Dimension(870, 350));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Logout.setText("Logout");
@@ -144,6 +149,11 @@ public class Doctor extends javax.swing.JFrame {
         jPanel1.add(FirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 90, -1));
 
         LastName.setEditable(false);
+        LastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LastNameActionPerformed(evt);
+            }
+        });
         jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 90, -1));
 
         DOB.setEditable(false);
@@ -402,6 +412,10 @@ public class Doctor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EthnicityActionPerformed
 
+    private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LastNameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -432,7 +446,13 @@ public class Doctor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Doctor().setVisible(true);
+                try
+                {
+                    new Doctor().setVisible(true);
+                }
+                catch (Exception e)
+                {
+                }
             }
         });
     }

@@ -22,8 +22,13 @@ public class Nurse extends javax.swing.JFrame {
     /**
      * Creates new form Nurse
      */
-    public Nurse() {
+    public Nurse() throws SQLException {
         initComponents();
+        azure db = new azure();
+        ViewPatient viewPatient = new ViewPatient();
+        
+
+        jList6.setModel(viewPatient.setPatient());
     }
 
     /**
@@ -413,7 +418,13 @@ public class Nurse extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Nurse().setVisible(true);
+                try
+                {                   
+                    new Nurse().setVisible(true);
+                }
+                catch (Exception E)
+                {
+                }
             }
         });
     }

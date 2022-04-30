@@ -157,11 +157,13 @@ public class azure
             stmt.setString(2, lastName);
             ResultSet patient = stmt.executeQuery();
 
-            patient.next();
-            return patient;
+            
+            if (patient.next()) return patient;
+            else return null;
 
         } catch (Exception e) {
             error = e.toString();
+            System.out.println(error);
         }
 
         //close();
@@ -264,7 +266,7 @@ public class azure
 
         try
         {
-            PreparedStatement stmt = con.prepareStatement("UPDATE Patient SET First_Name = ? AND Last_Name = ? AND Address = ? AND Date_of_Birth = ? AND Gender = ? AND Primary_Physician = ? AND Health_Insurance AND Covid_Vaccine AND Emergency_Contact AND Allergies = ? AND Medical_Condition = ? AND Ethnicity = ? AND Religion = ? AND Social_Security = ? AND Sexual_Activity = ? AND Blood_Type = ? WHERE Patient_ID = ?");
+            PreparedStatement stmt = con.prepareStatement("UPDATE Patient SET First_Name = ? AND Last_Name = ? AND Date_of_Birth = ? AND Gender = ? AND Primary_Physician = ? AND Health_Insurance AND Covid_Vaccine AND Emergency_Contact AND Allergies = ? AND Medical_Condition = ? AND Ethnicity = ? AND Religion = ? AND Social_Security = ? AND Sexual_Activity = ? AND Blood_Type = ? AND City = ? AND Street_Name = ? AND State = ? AND Zip_Code = ? AND Primary_Phone = ? AND Email = ? WHERE Patient_ID = ?");
             int i;
             for(i = 0; i < patientInfo.size(); i++)
             {
@@ -274,7 +276,8 @@ public class azure
             stmt.executeUpdate();
 
         } catch (Exception e) {
-            error = e.toString();
+            //error = e.toString();
+            System.out.println(error);
         }
 
         //close();
@@ -334,7 +337,7 @@ public class azure
     {
         try
         {
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO Patient VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO Patient VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             
             stmt.setInt(1, patientID);
             for(int i = 0; i < patientInfo.size(); i++)
@@ -346,6 +349,7 @@ public class azure
 
         } catch (Exception e) {
             error = e.toString();
+            System.out.println(error);
         }
         
     }
