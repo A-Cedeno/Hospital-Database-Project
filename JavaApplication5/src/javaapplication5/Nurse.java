@@ -103,6 +103,18 @@ public class Nurse extends javax.swing.JFrame {
         SSN.setText(patientInfo.getString(14).replaceAll("\\s", ""));
         SexuallyActive.setSelectedItem(patientInfo.getString(15).replaceAll("\\s", ""));
         BloodType.setSelectedItem(patientInfo.getString(16).replaceAll("\\s", ""));
+
+        azure db = new azure();
+        if (db.getVisit(localPatientID) != null)
+        {
+            ResultSet visitInfo = db.getVisit(localPatientID);
+            Notes.setText(visitInfo.getString(4).replaceAll("\\s" + "\\s", ""));
+            BloodPressure.setText(visitInfo.getString(6).replaceAll("\\s", ""));
+            HeartRate.setText(visitInfo.getString(7).replaceAll("\\s", ""));
+            Height.setText(visitInfo.getString(8).replaceAll("\\s", ""));
+            Weight.setText(visitInfo.getString(9).replaceAll("\\s", ""));
+            Admit.setSelectedItem(visitInfo.getString(13).replaceAll("\\s", ""));
+        }
     }
 
     /**
@@ -450,10 +462,11 @@ public class Nurse extends javax.swing.JFrame {
         localPatientInfo.add("");
 
 
-            if(localPatientID == -1) System.out.println("Error! Must select a patient before suvbmitting visit records!");
+            if(localPatientID == -1) System.out.println("Error! Must select a patient before submitting visit records!"); //add handling here in ui
             if (db.getVisit(localPatientID) != null)
             {
                 //add modify visit method here, which still requires implementation in azure.java
+                //ResultSet visitInfo = db.getVisit(localPatientID);
             }
             else
             {
