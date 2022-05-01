@@ -60,8 +60,8 @@ public class Patient extends javax.swing.JFrame {
         StreetName.setText(patientInfo.getString(18).replaceAll("\\s", ""));
         State.setText(patientInfo.getString(19).replaceAll("\\s", ""));
         Zip.setText(patientInfo.getString(20).replaceAll("\\s", ""));
-        Email.setText(patientInfo.getString(21).replaceAll("\\s", ""));
-        PrimaryPhone.setText(patientInfo.getString(22).replaceAll("\\s", ""));
+        PrimaryPhone.setText(patientInfo.getString(21).replaceAll("\\s", ""));
+        Email.setText(patientInfo.getString(22).replaceAll("\\s", ""));
         
     }
 
@@ -440,11 +440,47 @@ public class Patient extends javax.swing.JFrame {
          
 
          
-       if (db.getPatientByName(localFirstName,localLastName) != null) //if this returns null that means there is no patient with that name
+       if (db.getPatientByName(localFirstName,localLastName) != null)
        {
             System.out.println("In here");
             ResultSet tempPatient = db.getPatientByName(localFirstName,localLastName);
+            if(PatientSearch.modifyPatient == true)
+            {
+                System.out.println("modifying patient record");
+                ArrayList<String> localPatientInfo = new ArrayList<String>();
+                localPatientInfo.add(localFirstName);
+                localPatientInfo.add(localLastName);
+                //localPatientInfo.add(localAddress);
+                localPatientInfo.add(localDOB);
+                localPatientInfo.add(localGender);
+                localPatientInfo.add(localPrimaryPhysician);
+                localPatientInfo.add(localHealthInsurance);
+                localPatientInfo.add(localCovidVaccine);
+                localPatientInfo.add(localSecondaryPhone);
+                localPatientInfo.add(localAllergies);
+                localPatientInfo.add(localMedicalCondition);
+                localPatientInfo.add(localEthnicity);
+                localPatientInfo.add(localReligion);
+                localPatientInfo.add(localSSN);
+                localPatientInfo.add(localSexuallyActive);
+                localPatientInfo.add(localBloodType);
+                localPatientInfo.add(localCity);
+                localPatientInfo.add(localStreetName);
+                localPatientInfo.add(localState);
+                localPatientInfo.add(localZip);
+                localPatientInfo.add(localPrimaryPhone);
+                localPatientInfo.add(localEmail);
+                try
+                {
+                
+                    db.updatePatient(tempPatient.getInt(1), localPatientInfo);
+                }
+                catch (Exception e)
+                {
+                }
+            }
             //add alert that says that this patient cannot be added because they already exist in the db
+            //add a handler that allows the situation where they're updating patient
        }
        else
        {

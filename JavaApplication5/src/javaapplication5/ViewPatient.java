@@ -207,4 +207,6 @@ public class ViewPatient extends javax.swing.JFrame {
     javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    public boolean modifyPatient;
 }
+

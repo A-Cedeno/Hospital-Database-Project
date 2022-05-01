@@ -66,6 +66,7 @@ public class PatientSearch extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+                modifyPatient = true;
                 this.dispose();
                 ViewPatient viewpatient = null;
                 try 
@@ -79,6 +80,7 @@ public class PatientSearch extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                modifyPatient = false;
                 this.dispose();
                 Patient patient = new Patient();
                 patient.setVisible(true);
@@ -124,4 +126,5 @@ public class PatientSearch extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+    public static boolean modifyPatient;
 }

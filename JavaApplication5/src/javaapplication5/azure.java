@@ -99,6 +99,7 @@ public class azure
         try
         {
             con.close();
+            System.out.println("Database connection closed");
         } 
         catch (Exception e) 
         {
@@ -179,8 +180,28 @@ public class azure
             stmt.setInt(1, patientID);
             ResultSet visit = stmt.executeQuery();
 
-            visit.next();
-            return visit;
+            if (visit.next()) return visit;
+            else return null;
+
+        } catch (Exception e) {
+            error = e.toString();
+        }
+
+        return null;
+    }
+
+    public static ResultSet getVisitDoctor(int patientID)
+    {    
+
+        try
+        {
+            PreparedStatement stmt = con.prepareStatement("Select * FROM Visit WHERE Patient_ID = ? WHERE Admittance_Status = ?");
+            stmt.setInt(1, patientID);
+            stmt.setString(2, "Yes");
+            ResultSet visit = stmt.executeQuery();
+
+            if (visit.next()) return visit;
+            else return null;
 
         } catch (Exception e) {
             error = e.toString();
@@ -266,17 +287,22 @@ public class azure
 
         try
         {
-            PreparedStatement stmt = con.prepareStatement("UPDATE Patient SET First_Name = ? AND Last_Name = ? AND Date_of_Birth = ? AND Gender = ? AND Primary_Physician = ? AND Health_Insurance AND Covid_Vaccine AND Emergency_Contact AND Allergies = ? AND Medical_Condition = ? AND Ethnicity = ? AND Religion = ? AND Social_Security = ? AND Sexual_Activity = ? AND Blood_Type = ? AND City = ? AND Street_Name = ? AND State = ? AND Zip_Code = ? AND Primary_Phone = ? AND Email = ? WHERE Patient_ID = ?");
+            PreparedStatement stmt = con.prepareStatement("UPDATE Patient SET First_Name = ?, Last_Name = ?, Date_of_Birth = ?, Gender = ?, Primary_Physician = ?, Health_Insurance = ?, Covid_Vaccine = ?, Emergency_Contact = ?, Allergies = ?, Medical_Conditions = ?, Ethnicity = ?, Religion = ?, Social_Security = ?, Sexual_Activity = ?, Blood_Type = ?, City = ?, Street_Name = ?, State = ?, Zip_Code = ?, Primary_Phone = ?, Email = ? WHERE Patient_ID = ?");
             int i;
+           System.out.println("size: " + patientInfo.size());
             for(i = 0; i < patientInfo.size(); i++)
             {
+                System.out.println(i);
+                System.out.println(patientInfo.get(i));
                 stmt.setString((i + 1), patientInfo.get(i));
+                //System.out.println(stmt.toString());
             }
-            stmt.setInt(i, patientID);
+            stmt.setInt(i + 1, patientID);
+            System.out.println("here");
             stmt.executeUpdate();
 
         } catch (Exception e) {
-            //error = e.toString();
+            error = e.toString();
             System.out.println(error);
         }
 
@@ -316,7 +342,7 @@ public class azure
         {
             int visitID = (int)(Math.random()*(100000 - 1 + 1) + 1);
             //patientid, visitid, visit_date, patient_note, discharge_instructions, bloodpressure, heart rate, height, weight, diagnosis, prescriptions, tests, admittancestatus, admittancedate, dischargedate
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO Patient VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO Visit VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             
             stmt.setInt(1, patientID);
             stmt.setInt(2, visitID);
@@ -329,6 +355,7 @@ public class azure
 
         } catch (Exception e) {
             error = e.toString();
+            System.out.println(error);
         }
         
     }

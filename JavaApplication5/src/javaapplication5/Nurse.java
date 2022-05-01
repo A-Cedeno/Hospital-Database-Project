@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -29,6 +32,77 @@ public class Nurse extends javax.swing.JFrame {
         
 
         jList6.setModel(viewPatient.setPatient());
+
+        ListSelectionListener ltd = new ListSelectionListener()
+        {
+            public void valueChanged(ListSelectionEvent listSelection)
+            {
+                boolean adjust = listSelection.getValueIsAdjusting();
+                if(!adjust)
+                {
+                    JList l = (JList) listSelection.getSource();
+                    String selectedValue = l.getSelectedValue().toString();
+                    System.out.println("List Selection: " + selectedValue);
+                    try
+                    {
+                        setPatient(selectedValue);
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                }
+            }
+        };
+        jList6.addListSelectionListener(ltd);
+    }
+
+    public void setPatient(String name) throws SQLException
+    {
+        String[] names = name.split("[^A-Za-z]+");
+        String firstName = names[0];
+        System.out.println(firstName);
+        String lastName = names[1];
+        System.out.println(lastName);
+
+        azure db = new azure();
+        db.connect();
+        ResultSet patientInfo = db.getPatientByName(firstName, lastName);
+        localPatientID = patientInfo.getInt(1);
+
+        /*
+        ResultSet visitInfo = db.getVisit(localPatientID);
+        if(db.getVisit(localPatientID) == null || (visitInfo.getString("Admittance_Status")).equals("Yes"))
+        {
+            populateFields(patientInfo);
+        }
+        */
+        try
+        {
+            System.out.println("In setPatient method of Nurse");
+            populateFields(patientInfo);
+
+        }
+        catch (Exception e)
+        {
+        }
+        db.close();
+    }
+
+    public void populateFields(ResultSet patientInfo) throws SQLException
+    {
+        FirstName.setText(patientInfo.getString(2).replaceAll("\\s", ""));
+        
+        LastName.setText(patientInfo.getString(3).replaceAll("\\s", ""));
+        DOB.setText(patientInfo.getString(4));
+        Gender.setText(patientInfo.getString(5).replaceAll("\\s", ""));
+
+        Ethnicity.setText(patientInfo.getString(12).replaceAll("\\s", ""));
+        
+
+        Religion.setText(patientInfo.getString(13).replaceAll("\\s", ""));
+        SSN.setText(patientInfo.getString(14).replaceAll("\\s", ""));
+        SexuallyActive.setSelectedItem(patientInfo.getString(15).replaceAll("\\s", ""));
+        BloodType.setSelectedItem(patientInfo.getString(16).replaceAll("\\s", ""));
     }
 
     /**
@@ -88,9 +162,7 @@ public class Nurse extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 250));
-        setMaximumSize(new java.awt.Dimension(840, 360));
         setMinimumSize(new java.awt.Dimension(840, 360));
-        setPreferredSize(new java.awt.Dimension(840, 360));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Logout.setText("Logout");
@@ -260,6 +332,11 @@ public class Nurse extends javax.swing.JFrame {
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
 
         Admit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
+        Admit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdmitActionPerformed(evt);
+            }
+        });
         getContentPane().add(Admit, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 100, -1));
 
         jList6.setModel(new javax.swing.AbstractListModel<String>() {
@@ -326,48 +403,66 @@ public class Nurse extends javax.swing.JFrame {
        azure db = new azure();
         db.connect(); 
           localBloodPressure = (String) BloodPressure.getText();
-          localHeartRate = HeartRate.getText();
-          localBloodType = (String) BloodType.getSelectedItem();
-          localFirstName = FirstName.getText();
-          localLastName = LastName.getText();
-          localSexuallyActive = (String) SexuallyActive.getSelectedItem();
-          localHeight = Height.getText();
-          localWeight = Weight.getText();
-          localGender = (String) Gender.getText();
-          localReligion = (String) Religion.getText();
-          localEthnicity = (String) Ethnicity.getText();
-          localDOB = DOB.getText();
-          localSSN = SSN.getText();
-          localAllergies = Allergies.getText();
-          localNotes = Notes.getText();
+          localHeartRate = (String) HeartRate.getText();
+          //localBloodType = (String) BloodType.getSelectedItem();
+          //localFirstName = FirstName.getText();
+          //localLastName = LastName.getText();
+          //localSexuallyActive = (String) SexuallyActive.getSelectedItem();
+          localHeight = (String) Height.getText();
+          localWeight = (String) Weight.getText();
+          //localGender = (String) Gender.getText();
+          //localReligion = (String) Religion.getText();
+          //localEthnicity = (String) Ethnicity.getText();
+          //localDOB = DOB.getText();
+          //localSSN = SSN.getText();
+          //localAllergies = Allergies.getText();
+          localNotes = (String) Notes.getText();
+        localAdmittance = (String) Admit.getSelectedItem();
         
-       if (db.getPatientByName(localFirstName,localLastName) == null) //if this returns null that means there is no patient with that name
-       {
-        ResultSet tempPatient = db.getPatientByName(localFirstName,localLastName);
-       }
-       else
-       {
+       
         ArrayList<String> localPatientInfo = new ArrayList<String>();
-        localPatientInfo.add(localFirstName);
-        localPatientInfo.add(localLastName);
-        localPatientInfo.add(localDOB);
-        localPatientInfo.add(localGender);
-        localPatientInfo.add(localAllergies);
-        localPatientInfo.add(localEthnicity);
-        localPatientInfo.add(localReligion);
-        localPatientInfo.add(localSSN);
-        localPatientInfo.add(localSexuallyActive);
-        localPatientInfo.add(localBloodType);
+        //localPatientInfo.add(localPatientID);
+        //need to grab what's there and save it there again
+        localPatientInfo.add("");
+        //nurse specific notes
         localPatientInfo.add(localNotes);
-        localPatientInfo.add(localHeartRate);
+        //discharge instructions, must be resaved
+        localPatientInfo.add("");
         localPatientInfo.add(localBloodPressure);
+        localPatientInfo.add(localHeartRate);
         localPatientInfo.add(localHeight);
         localPatientInfo.add(localWeight);
-        
-        Random patientID = new Random();
+        //local diagnosis, must be resaved
+        localPatientInfo.add("");
+        //local prescriptions, must be resaved
+        localPatientInfo.add("");
+        //local tests, must be resaved
+        localPatientInfo.add("");
+        localPatientInfo.add(localAdmittance);
+        //addmitance date
+        localPatientInfo.add("");
+        //discharge date
+        localPatientInfo.add("");
+        //discharge Status 
+        localPatientInfo.add("");
+        //localPatientInfo.add(localNotes);
+        //doctor note, must be resaved
+        localPatientInfo.add("");
+
+
+            if(localPatientID == -1) System.out.println("Error! Must select a patient before suvbmitting visit records!");
+            if (db.getVisit(localPatientID) != null)
+            {
+                //add modify visit method here, which still requires implementation in azure.java
+            }
+            else
+            {
+                db.setVisit(localPatientID, localPatientInfo);
+            }
+        //Random patientID = new Random();
     //    localPatientInfo.add (localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType);
-        db.setPatient(patientID.nextInt(),localPatientInfo);
-       }
+        //db.setPatient(patientID.nextInt(),localPatientInfo);
+       
 
       db.close();                              
     }//GEN-LAST:event_SubmitActionPerformed
@@ -388,10 +483,14 @@ public class Nurse extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ReligionActionPerformed
 
+    private void AdmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdmitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AdmitActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -414,6 +513,7 @@ public class Nurse extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Nurse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -421,6 +521,7 @@ public class Nurse extends javax.swing.JFrame {
                 try
                 {                   
                     new Nurse().setVisible(true);
+                    
                 }
                 catch (Exception E)
                 {
@@ -491,4 +592,6 @@ private String localSexuallyActive;
     private String localBloodPressure;
     private String localHeartRate;
     private String localNotes;
+    private int localPatientID = -1;
+    private String localAdmittance;
 }
