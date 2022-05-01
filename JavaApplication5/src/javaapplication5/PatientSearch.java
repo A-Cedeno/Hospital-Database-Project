@@ -36,12 +36,11 @@ public class PatientSearch extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 250));
-        setMaximumSize(new java.awt.Dimension(370, 350));
         setMinimumSize(new java.awt.Dimension(370, 350));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(370, 350));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add Patient");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,6 +49,7 @@ public class PatientSearch extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 320, 120));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("View Patient");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,9 +58,9 @@ public class PatientSearch extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 320, 110));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 5.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background blue 2.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 400, 40));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 400, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -115,6 +115,9 @@ public class Billing extends javax.swing.JFrame {
         jList6 = new javax.swing.JList<>();
         OK = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 250));
@@ -263,9 +266,9 @@ public class Billing extends javax.swing.JFrame {
         });
         jPanel1.add(Pregnant, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 90, -1));
 
-        Wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 6.jpg"))); // NOI18N
+        Wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray.png"))); // NOI18N
         Wallpaper.setText("jLabel2");
-        jPanel1.add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 420));
+        jPanel1.add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 430, 420));
 
         jTabbedPane1.addTab("Patient Information", jPanel1);
 
@@ -355,9 +358,8 @@ public class Billing extends javax.swing.JFrame {
 
         jPanel2.add(Allergies, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 270, 60));
 
-        Wallpaper2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 4.jpg"))); // NOI18N
-        Wallpaper2.setText("jLabel16");
-        jPanel2.add(Wallpaper2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 430));
+        Wallpaper2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray.png"))); // NOI18N
+        jPanel2.add(Wallpaper2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 430, 430));
 
         jTabbedPane1.addTab("Medical Records", jPanel2);
 
@@ -480,21 +482,22 @@ public class Billing extends javax.swing.JFrame {
         });
         jPanel3.add(Tax, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 90, -1));
 
-        Wallpaper3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 5.png"))); // NOI18N
+        Wallpaper3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray.png"))); // NOI18N
         Wallpaper3.setText("jLabel24");
-        jPanel3.add(Wallpaper3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 420));
+        jPanel3.add(Wallpaper3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 430, 420));
 
         jTabbedPane1.addTab("View Bill", jPanel3);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 420, 450));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 450));
 
+        Logout.setBackground(new java.awt.Color(255, 255, 255));
         Logout.setText("Logout");
         Logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutActionPerformed(evt);
             }
         });
-        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, -1));
+        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, -1, -1));
 
         jList6.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "John Doe", "Jane Doe" };
@@ -506,7 +509,10 @@ public class Billing extends javax.swing.JFrame {
 
         getContentPane().add(PatientSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 120, 90));
 
+        OK.setBackground(new java.awt.Color(255, 255, 255));
         OK.setText("Ok");
+        OK.setMaximumSize(new java.awt.Dimension(63, 21));
+        OK.setMinimumSize(new java.awt.Dimension(63, 21));
         OK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OKMouseClicked(evt);
@@ -517,10 +523,19 @@ public class Billing extends javax.swing.JFrame {
                 OKActionPerformed(evt);
             }
         });
-        getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 60, 20));
+        getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 60, 20));
 
         jLabel1.setText("Select Patient");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background blue 2.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, -40, 560, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background blue 2.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 150, 300));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background blue 2.jpg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 150, 170));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -803,6 +818,9 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JTextField Zip;
     private javax.swing.JLabel ZipLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;

@@ -76,22 +76,6 @@ public class Patient extends javax.swing.JFrame {
 
         Logout = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        SSNLabel = new javax.swing.JLabel();
-        DOBLabel = new javax.swing.JLabel();
-        LastNameLabel = new javax.swing.JLabel();
-        Religion = new javax.swing.JComboBox<>();
-        ReligionLabel = new javax.swing.JLabel();
-        Ethnicity = new javax.swing.JComboBox<>();
-        EthinicityLabel = new javax.swing.JLabel();
-        Gender = new javax.swing.JComboBox<>();
-        GenderLabel = new javax.swing.JLabel();
-        FirstNameLabel = new javax.swing.JLabel();
-        LastName = new javax.swing.JTextField();
-        FirstName = new javax.swing.JTextField();
-        SSN = new javax.swing.JTextField();
-        DOB = new javax.swing.JTextField();
-        Wallpaper = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         SecondaryPhone = new javax.swing.JTextField();
         StreetName = new javax.swing.JTextField();
@@ -129,79 +113,47 @@ public class Patient extends javax.swing.JFrame {
         MedicalConditions1 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         Wallpaper3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        SSNLabel = new javax.swing.JLabel();
+        DOBLabel = new javax.swing.JLabel();
+        LastNameLabel = new javax.swing.JLabel();
+        Religion = new javax.swing.JComboBox<>();
+        ReligionLabel = new javax.swing.JLabel();
+        Ethnicity = new javax.swing.JComboBox<>();
+        EthinicityLabel = new javax.swing.JLabel();
+        Gender = new javax.swing.JComboBox<>();
+        GenderLabel = new javax.swing.JLabel();
+        FirstNameLabel = new javax.swing.JLabel();
+        LastName = new javax.swing.JTextField();
+        FirstName = new javax.swing.JTextField();
+        SSN = new javax.swing.JTextField();
+        DOB = new javax.swing.JTextField();
+        Wallpaper = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusCycleRoot(false);
         setLocation(new java.awt.Point(500, 360));
-        setMaximumSize(new java.awt.Dimension(486, 368));
-        setMinimumSize(new java.awt.Dimension(486, 368));
-        setPreferredSize(new java.awt.Dimension(486, 368));
+        setMaximumSize(new java.awt.Dimension(486, 380));
+        setMinimumSize(new java.awt.Dimension(486, 380));
+        setPreferredSize(new java.awt.Dimension(486, 380));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Logout.setBackground(new java.awt.Color(255, 255, 255));
-        Logout.setFont(new java.awt.Font("SamsungOneUI Light Condensed", 1, 10)); // NOI18N
         Logout.setText("Logout");
         Logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutActionPerformed(evt);
             }
         });
-        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
+        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
 
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(503, 300));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(503, 300));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(503, 300));
-
-        jPanel1.setMaximumSize(new java.awt.Dimension(360, 190));
-        jPanel1.setPreferredSize(new java.awt.Dimension(360, 190));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        SSNLabel.setText("SSN");
-        jPanel1.add(SSNLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
-
-        DOBLabel.setText("D.O.B");
-        jPanel1.add(DOBLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, 10));
-
-        LastNameLabel.setText("Last Name");
-        jPanel1.add(LastNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, 20));
-
-        Religion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Christianity", "Judaism", "Atheism", "Buddhism", "Hinduism", "Other" }));
-        jPanel1.add(Religion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 100, -1));
-
-        ReligionLabel.setText("Religion");
-        jPanel1.add(ReligionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 20));
-
-        Ethnicity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "White", "Hispanic", "Asian", "American Indian", "African American", "Native Hawaiian", "Latino", "Other" }));
-        Ethnicity.setToolTipText("");
-        jPanel1.add(Ethnicity, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 100, -1));
-
-        EthinicityLabel.setText("Ethinicity");
-        jPanel1.add(EthinicityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, 20));
-
-        Gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Nonbinary", "Other" }));
-        Gender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GenderActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 100, -1));
-
-        GenderLabel.setText("Gender");
-        jPanel1.add(GenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
-
-        FirstNameLabel.setText("First Name");
-        jPanel1.add(FirstNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-        jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 100, -1));
-        jPanel1.add(FirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 100, -1));
-        jPanel1.add(SSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 100, -1));
-        jPanel1.add(DOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 100, -1));
-
-        Wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 6.jpg"))); // NOI18N
-        Wallpaper.setText("jLabel31");
-        jPanel1.add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 330));
-
-        jTabbedPane1.addTab("Personal Information", jPanel1);
 
         jPanel2.setMaximumSize(new java.awt.Dimension(360, 290));
         jPanel2.setMinimumSize(new java.awt.Dimension(360, 290));
@@ -246,9 +198,9 @@ public class Patient extends javax.swing.JFrame {
         jPanel2.add(PrimaryPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 110, -1));
         jPanel2.add(State, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 110, -1));
 
-        Wallpaper2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 4.jpg"))); // NOI18N
+        Wallpaper2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray.png"))); // NOI18N
         Wallpaper2.setText("jLabel30");
-        jPanel2.add(Wallpaper2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 340));
+        jPanel2.add(Wallpaper2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, 410, 330));
 
         jTabbedPane1.addTab("Contact Information", jPanel2);
 
@@ -326,16 +278,65 @@ public class Patient extends javax.swing.JFrame {
 
         jPanel3.add(MedicalConditions1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 210, 70));
 
-        Wallpaper3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 5.png"))); // NOI18N
+        Wallpaper3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray.png"))); // NOI18N
         Wallpaper3.setText("jLabel29");
-        jPanel3.add(Wallpaper3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 390));
+        jPanel3.add(Wallpaper3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, 410, 340));
 
         jTabbedPane1.addTab("Medical Information", jPanel3);
+
+        jPanel1.setMaximumSize(new java.awt.Dimension(360, 190));
+        jPanel1.setPreferredSize(new java.awt.Dimension(360, 190));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        SSNLabel.setText("SSN");
+        jPanel1.add(SSNLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
+
+        DOBLabel.setText("D.O.B");
+        jPanel1.add(DOBLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, 10));
+
+        LastNameLabel.setText("Last Name");
+        jPanel1.add(LastNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, 20));
+
+        Religion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Christianity", "Judaism", "Atheism", "Buddhism", "Hinduism", "Other" }));
+        jPanel1.add(Religion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 100, -1));
+
+        ReligionLabel.setText("Religion");
+        jPanel1.add(ReligionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 20));
+
+        Ethnicity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "White", "Hispanic", "Asian", "American Indian", "African American", "Native Hawaiian", "Latino", "Other" }));
+        Ethnicity.setToolTipText("");
+        jPanel1.add(Ethnicity, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 100, -1));
+
+        EthinicityLabel.setText("Ethinicity");
+        jPanel1.add(EthinicityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, 20));
+
+        Gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Nonbinary", "Other" }));
+        Gender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenderActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 100, -1));
+
+        GenderLabel.setText("Gender");
+        jPanel1.add(GenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        FirstNameLabel.setText("First Name");
+        jPanel1.add(FirstNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 100, -1));
+        jPanel1.add(FirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 100, -1));
+        jPanel1.add(SSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 100, -1));
+        jPanel1.add(DOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 100, -1));
+
+        Wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray.png"))); // NOI18N
+        Wallpaper.setText("jLabel31");
+        jPanel1.add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, 410, 330));
+
+        jTabbedPane1.addTab("Personal Information", jPanel1);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 360));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("SamsungOneUI Light Condensed", 1, 10)); // NOI18N
         jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -343,6 +344,17 @@ public class Patient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background blue 2.jpg"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 350, 320));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background blue 2.jpg"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -170, 460, 650));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background blue 2.jpg"))); // NOI18N
+        jLabel8.setText("jLabel8");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 20, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -668,6 +680,9 @@ public class Patient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

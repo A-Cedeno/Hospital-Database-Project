@@ -94,12 +94,16 @@ public class Doctor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Diagnosis = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 250));
         setMinimumSize(new java.awt.Dimension(870, 350));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Logout.setBackground(new java.awt.Color(255, 255, 255));
         Logout.setText("Logout");
         Logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,7 +177,7 @@ public class Doctor extends javax.swing.JFrame {
         Religion.setEditable(false);
         jPanel1.add(Religion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 90, -1));
 
-        Wallpaper3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 5.png"))); // NOI18N
+        Wallpaper3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray 2.jpg"))); // NOI18N
         Wallpaper3.setText("jLabel19");
         jPanel1.add(Wallpaper3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 300));
 
@@ -233,7 +237,7 @@ public class Doctor extends javax.swing.JFrame {
         BloodType.setEditable(false);
         jPanel2.add(BloodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 90, -1));
 
-        Wallpaper1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 6.jpg"))); // NOI18N
+        Wallpaper1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray 2.jpg"))); // NOI18N
         Wallpaper1.setText("jLabel17");
         jPanel2.add(Wallpaper1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 380, 300));
 
@@ -267,7 +271,7 @@ public class Doctor extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 270, 80));
 
-        Wallpaper2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 4.jpg"))); // NOI18N
+        Wallpaper2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray 2.jpg"))); // NOI18N
         Wallpaper2.setText("jLabel18");
         jPanel3.add(Wallpaper2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 380, 300));
 
@@ -299,6 +303,7 @@ public class Doctor extends javax.swing.JFrame {
 
         getContentPane().add(PatientSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 120, 90));
 
+        Submit.setBackground(new java.awt.Color(255, 255, 255));
         Submit.setText("Submit");
         Submit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -326,6 +331,15 @@ public class Doctor extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 6.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 170, 320));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background blue 2.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background blue 2.jpg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 340, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background blue 2.jpg"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 330, 160));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -501,7 +515,10 @@ public class Doctor extends javax.swing.JFrame {
     private javax.swing.JTextField Weight;
     private javax.swing.JLabel WeightLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
