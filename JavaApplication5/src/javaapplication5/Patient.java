@@ -122,10 +122,6 @@ public class Patient extends javax.swing.JFrame {
         BloodType = new javax.swing.JComboBox<>();
         SexuallyActiveLabel = new javax.swing.JLabel();
         SexuallyActive = new javax.swing.JComboBox<>();
-        HeightLabel = new javax.swing.JLabel();
-        Height = new javax.swing.JTextField();
-        WeightLabel = new javax.swing.JLabel();
-        Weight = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         MedicalConditions = new javax.swing.JScrollPane();
@@ -134,21 +130,24 @@ public class Patient extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         Wallpaper3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusCycleRoot(false);
         setLocation(new java.awt.Point(500, 360));
-        setMinimumSize(new java.awt.Dimension(500, 360));
+        setMaximumSize(new java.awt.Dimension(486, 368));
+        setMinimumSize(new java.awt.Dimension(486, 368));
+        setPreferredSize(new java.awt.Dimension(486, 368));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Logout.setBackground(new java.awt.Color(255, 255, 255));
+        Logout.setFont(new java.awt.Font("SamsungOneUI Light Condensed", 1, 10)); // NOI18N
         Logout.setText("Logout");
         Logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogoutActionPerformed(evt);
             }
         });
-        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, -1, -1));
+        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
 
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(503, 300));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(503, 300));
@@ -272,10 +271,10 @@ public class Patient extends javax.swing.JFrame {
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 90, -1));
 
         jLabel4.setText("Allergies");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, 20));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, 20));
 
         jLabel5.setText("Medical Conditions");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, 20));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, 20));
 
         BloodTypeLabel.setText("Blood Type");
         jPanel3.add(BloodTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, 20));
@@ -293,26 +292,6 @@ public class Patient extends javax.swing.JFrame {
             }
         });
         jPanel3.add(SexuallyActive, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 100, 20));
-
-        HeightLabel.setText("Height (ft)");
-        jPanel3.add(HeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, 20));
-
-        Height.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HeightActionPerformed(evt);
-            }
-        });
-        jPanel3.add(Height, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 90, -1));
-
-        WeightLabel.setText("Weight (kg)");
-        jPanel3.add(WeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, 20));
-
-        Weight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WeightActionPerformed(evt);
-            }
-        });
-        jPanel3.add(Weight, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 90, -1));
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,7 +312,7 @@ public class Patient extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         MedicalConditions.setViewportView(jTextArea1);
 
-        jPanel3.add(MedicalConditions, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 210, 70));
+        jPanel3.add(MedicalConditions, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 210, 70));
 
         jTextArea2.setColumns(20);
         jTextArea2.setLineWrap(true);
@@ -345,16 +324,18 @@ public class Patient extends javax.swing.JFrame {
         });
         MedicalConditions1.setViewportView(jTextArea2);
 
-        jPanel3.add(MedicalConditions1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 210, 70));
+        jPanel3.add(MedicalConditions1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 210, 70));
 
         Wallpaper3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 5.png"))); // NOI18N
         Wallpaper3.setText("jLabel29");
-        jPanel3.add(Wallpaper3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 340));
+        jPanel3.add(Wallpaper3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 390));
 
         jTabbedPane1.addTab("Medical Information", jPanel3);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 360));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("SamsungOneUI Light Condensed", 1, 10)); // NOI18N
         jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,9 +343,6 @@ public class Patient extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
-
-        jLabel6.setText("Submit info to Database");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 110, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -380,16 +358,6 @@ public class Patient extends javax.swing.JFrame {
         //localSexuallyActive = (String) SexuallyActive.getSelectedItem();
        // System.out.println(SexuallyActive.getSelectedItem());
     }//GEN-LAST:event_SexuallyActiveActionPerformed
-
-    private void HeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HeightActionPerformed
-        // TODO add your handling code here:
-       // localHeight = Height.getText();
-    }//GEN-LAST:event_HeightActionPerformed
-
-    private void WeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WeightActionPerformed
-        // TODO add your handling code here:
-        //localWeight = Weight.getText();
-    }//GEN-LAST:event_WeightActionPerformed
 
     private void GenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderActionPerformed
         // TODO add your handling code here:
@@ -414,8 +382,6 @@ public class Patient extends javax.swing.JFrame {
         db.connect();
         // getting all fields
         localSexuallyActive = (String) SexuallyActive.getSelectedItem();
-         localHeight = Height.getText();
-         localWeight = Weight.getText();
          localGender = (String) Gender.getSelectedItem();
          localReligion = (String) Religion.getSelectedItem();
          localFirstName = FirstName.getText();
@@ -518,11 +484,6 @@ public class Patient extends javax.swing.JFrame {
 
       db.close();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void EthnicityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EthnicityActionPerformed
-        // TODO add your handling code here:
-        //localEthnicity = (String) Ethnicity.getSelectedItem();
-    }//GEN-LAST:event_EthnicityActionPerformed
 
     private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
         // TODO add your handling code here:
@@ -676,8 +637,6 @@ public class Patient extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Gender;
     private javax.swing.JLabel GenderLabel;
     private javax.swing.JLabel HealthInsuranceLabel;
-    private javax.swing.JTextField Height;
-    private javax.swing.JLabel HeightLabel;
     private javax.swing.JTextField LastName;
     private javax.swing.JLabel LastNameLabel;
     private javax.swing.JButton Logout;
@@ -700,8 +659,6 @@ public class Patient extends javax.swing.JFrame {
     private javax.swing.JLabel Wallpaper;
     private javax.swing.JLabel Wallpaper2;
     private javax.swing.JLabel Wallpaper3;
-    private javax.swing.JTextField Weight;
-    private javax.swing.JLabel WeightLabel;
     private javax.swing.JTextField Zip;
     private javax.swing.JLabel ZipLabel;
     private javax.swing.JButton jButton1;
@@ -711,7 +668,6 @@ public class Patient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

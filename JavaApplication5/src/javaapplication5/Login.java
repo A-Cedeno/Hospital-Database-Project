@@ -6,6 +6,9 @@
 package javaapplication5;
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /*
  *
  * @author alana
@@ -105,20 +108,28 @@ public class Login extends javax.swing.JFrame {
         
         if(accessLevel!= null && accessLevel.contains("Doctor"))
         {
-            System.out.println("In Doctor");
-            JOptionPane.showMessageDialog(null, "Login Successful");
-             this.dispose();
-            Doctor doctor = new Doctor();
-            doctor.setVisible(true);
+            try {
+                System.out.println("In Doctor");
+                JOptionPane.showMessageDialog(null, "Login Successful");
+                this.dispose();
+                Doctor doctor = new Doctor();
+                doctor.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         else if(accessLevel!= null && accessLevel.contains("Nurse"))
         {
-            System.out.println("In nurse");
-            JOptionPane.showMessageDialog(null, "Login Successful");
-             this.dispose();
-            Nurse nurse = new Nurse();
-            nurse.setVisible(true);
+            try {
+                System.out.println("In nurse");
+                JOptionPane.showMessageDialog(null, "Login Successful");
+                this.dispose();
+                Nurse nurse = new Nurse();
+                nurse.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         else if(accessLevel!= null && accessLevel.contains("Registration"))
