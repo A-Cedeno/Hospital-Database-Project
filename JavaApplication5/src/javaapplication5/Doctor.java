@@ -66,8 +66,8 @@ public class Doctor extends javax.swing.JFrame {
         */
 
         Object[] patientNames = tempList.toArray();
-        
-        for(int i = 0; i < 2; i++)
+        int count = tempList.size();
+        for(int i = 0; i < count; i++)
         {
             //System.out.println("length of temp list: " + tempList.size());
             System.out.println("items in temp list: " + tempList);
@@ -87,8 +87,15 @@ public class Doctor extends javax.swing.JFrame {
                 ResultSet visitInfo = db.getVisit(localPatientID);
                 if(visitInfo.getString("Admittance_Status").contains("Yes"))
                 {
-                    System.out.println("In here 2");
-                    temp.addElement(firstName + " " + lastName);
+                    if(visitInfo.getString("Discharge_Status").contains("Yes"))
+                    {
+                        System.out.println(firstName + " " + lastName + " has already been discharged");
+                    }
+                    else
+                    {
+                        System.out.println("In here 2");
+                        temp.addElement(firstName + " " + lastName);
+                    }
                 }
             }
         }
@@ -188,6 +195,9 @@ public class Doctor extends javax.swing.JFrame {
             HeartRate.setText(visitInfo.getString(7).replaceAll("\\s", ""));
             Height.setText(visitInfo.getString(8).replaceAll("\\s", ""));
             Weight.setText(visitInfo.getString(9).replaceAll("\\s", ""));
+            SelectedTest.setText(visitInfo.getString(12).replaceAll("\\s" + "\\s", ""));
+            SelectedMedication.setText(visitInfo.getString(11).replaceAll("\\s" + "\\s", ""));
+            Notes1.setText(visitInfo.getString(17).replaceAll("\\s" + "\\s", ""));
             //Admit.setSelectedItem(visitInfo.getString(13).replaceAll("\\s", ""));
         }
     }
@@ -605,6 +615,8 @@ public class Doctor extends javax.swing.JFrame {
           //localSSN = SSN.getText();
           //localAllergies = Allergies.getText();
           localNotes = (String) Notes.getText();
+            localDoctorNotes = (String) Notes1.getText();
+            localDischargeStatus = (String) Discharge.getSelectedItem();
         //need to set a handler for admittance specifically as well
         //localAdmittance = (String) Admit.getSelectedItem();
         
@@ -630,19 +642,19 @@ public class Doctor extends javax.swing.JFrame {
             //local diagnosis, must be resaved
             localPatientInfo.add(localDiagnosis);
             //local prescriptions, must be resaved
-            localPatientInfo.add(localMedication);
+            localPatientInfo.add(visitInfo.getString(11).replaceAll("\\s", "") + localMedication + ",");
             //local tests, must be resaved
-            localPatientInfo.add(localTest);
+            localPatientInfo.add(visitInfo.getString(12).replaceAll("\\s", "") + localTest + ",");
             localPatientInfo.add(visitInfo.getString(13));
             //addmitance date
             localPatientInfo.add(visitInfo.getString(14));
             //discharge date
             localPatientInfo.add(""); //handled by doctor
             //discharge Status 
-            localPatientInfo.add(""); //handled by doctor
+            localPatientInfo.add(localDischargeStatus); //handled by doctor
             //localPatientInfo.add(localNotes);
             //doctor note, must be resaved
-            localPatientInfo.add(""); //handled by doctor, must add a text box for this or simply remove this column and put these notes in discharge instructions
+            localPatientInfo.add(localDoctorNotes); //handled by doctor, must add a text box for this or simply remove this column and put these notes in discharge instructions
             db.updateVisit(localPatientID, visitInfo.getInt("Visit_ID") ,localPatientInfo);
         }
         catch (Exception e)
@@ -823,5 +835,7 @@ public class Doctor extends javax.swing.JFrame {
     private String localDiagnosis;
     private String localTest;
     private String localMedication;
+    private String localDoctorNotes;
+    private String localDischargeStatus;
     private int localPatientID = -1;
 }

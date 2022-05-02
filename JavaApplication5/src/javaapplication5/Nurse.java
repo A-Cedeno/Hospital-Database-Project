@@ -67,8 +67,8 @@ public class Nurse extends javax.swing.JFrame {
         */
 
         Object[] patientNames = tempList.toArray();
-        
-        for(int i = 0; i < 2; i++)
+        int count = tempList.size();
+        for(int i = 0; i < count; i++)
         {
             //System.out.println("length of temp list: " + tempList.size());
             System.out.println("items in temp list: " + tempList);
