@@ -445,7 +445,8 @@ public class Nurse extends javax.swing.JFrame {
           localNotes = (String) Notes.getText();
         localAdmittance = (String) Admit.getSelectedItem();
         
-       
+        //if a patient already has an exisiting visit record that is not discharged, modify the record instead. Otherwise, create a new record for that patient
+        //this will require that the information not directly controlled by nurse will need to be obtained from db and then saved back in there
         ArrayList<String> localPatientInfo = new ArrayList<String>();
         //localPatientInfo.add(localPatientID);
         //need to grab what's there and save it there again

@@ -195,7 +195,7 @@ public class azure
 
         try
         {
-            PreparedStatement stmt = con.prepareStatement("Select * FROM Visit WHERE Patient_ID = ? WHERE Admittance_Status = ?");
+            PreparedStatement stmt = con.prepareStatement("Select * FROM Visit WHERE Patient_ID = ? AND Admittance_Status = ?");
             stmt.setInt(1, patientID);
             stmt.setString(2, "Yes");
             ResultSet visit = stmt.executeQuery();
@@ -298,6 +298,36 @@ public class azure
                 //System.out.println(stmt.toString());
             }
             stmt.setInt(i + 1, patientID);
+            System.out.println("here");
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            error = e.toString();
+            System.out.println(error);
+        }
+
+        //close();
+    }
+
+    public static void updateVisit(int patientID, int visitID, ArrayList<String> patientInfo)
+    {    
+    
+        //connect();
+
+        try
+        {
+            PreparedStatement stmt = con.prepareStatement("UPDATE Visit SET Visit_Date = ?, Patient_Note = ?, Discharge_Instructions = ?, Blood_Pressure = ?, Heart_Rate = ?, Height = ?, Weight = ?, Diagnosis = ?, Prescriptions = ?, Tests_Administered = ?, Admittance_Status = ?, Admittance_Date = ?, Discharge_Date = ?, Discharge_Status = ?, Patient_Doctor_Note = ? WHERE Patient_ID = ? AND Visit_ID = ?");
+            int i;
+           System.out.println("size: " + patientInfo.size());
+            for(i = 0; i < patientInfo.size(); i++)
+            {
+                System.out.println(i);
+                System.out.println(patientInfo.get(i));
+                stmt.setString((i + 1), patientInfo.get(i));
+                //System.out.println(stmt.toString());
+            }
+            stmt.setInt(i + 1, patientID);
+            stmt.setInt(i + 2, visitID);
             System.out.println("here");
             stmt.executeUpdate();
 
