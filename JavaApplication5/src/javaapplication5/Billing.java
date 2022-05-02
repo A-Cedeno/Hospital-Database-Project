@@ -43,8 +43,6 @@ public class Billing extends javax.swing.JFrame {
         GenderLabel = new javax.swing.JLabel();
         FirstName = new javax.swing.JTextField();
         DOBLabel = new javax.swing.JLabel();
-        MaritalStatusLabel = new javax.swing.JLabel();
-        PregnantLabel = new javax.swing.JLabel();
         EmailLabel = new javax.swing.JLabel();
         DOB = new javax.swing.JTextField();
         PrimaryPhone = new javax.swing.JTextField();
@@ -62,29 +60,7 @@ public class Billing extends javax.swing.JFrame {
         State = new javax.swing.JTextField();
         ZipLabel = new javax.swing.JLabel();
         LastName = new javax.swing.JTextField();
-        MaritalStatus = new javax.swing.JTextField();
-        Pregnant = new javax.swing.JTextField();
         Wallpaper = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        AgeLabel = new javax.swing.JLabel();
-        VaccinesLabel = new javax.swing.JLabel();
-        Height = new javax.swing.JTextField();
-        Weight = new javax.swing.JTextField();
-        Age = new javax.swing.JTextField();
-        HeightLabel = new javax.swing.JLabel();
-        WeightLabel = new javax.swing.JLabel();
-        VisitsLabel = new javax.swing.JLabel();
-        MedicationLabel = new javax.swing.JLabel();
-        AllergiesLabel = new javax.swing.JLabel();
-        Vaccines = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        Visits = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        Medication = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        Allergies = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList<>();
-        Wallpaper2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         LastNameBill = new javax.swing.JTextField();
         BillNumLabel = new javax.swing.JLabel();
@@ -103,7 +79,6 @@ public class Billing extends javax.swing.JFrame {
         DateAdmittedLabel = new javax.swing.JLabel();
         TaxLabel = new javax.swing.JLabel();
         TotalLabel = new javax.swing.JLabel();
-        Save = new javax.swing.JButton();
         GenerateBill = new javax.swing.JButton();
         BillNum = new javax.swing.JTextField();
         DueDate = new javax.swing.JTextField();
@@ -144,7 +119,7 @@ public class Billing extends javax.swing.JFrame {
                 GenderActionPerformed(evt);
             }
         });
-        jPanel1.add(Gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 90, -1));
+        jPanel1.add(Gender, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 90, -1));
 
         Zip.setEditable(false);
         Zip.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +130,7 @@ public class Billing extends javax.swing.JFrame {
         jPanel1.add(Zip, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 110, -1));
 
         GenderLabel.setText("Gender");
-        jPanel1.add(GenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        jPanel1.add(GenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
         FirstName.setEditable(false);
         FirstName.addActionListener(new java.awt.event.ActionListener() {
@@ -167,12 +142,6 @@ public class Billing extends javax.swing.JFrame {
 
         DOBLabel.setText("D.O.B");
         jPanel1.add(DOBLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
-
-        MaritalStatusLabel.setText("Marital Status");
-        jPanel1.add(MaritalStatusLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
-
-        PregnantLabel.setText("Pregnant");
-        jPanel1.add(PregnantLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         EmailLabel.setText("Email");
         jPanel1.add(EmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 30, -1));
@@ -250,118 +219,11 @@ public class Billing extends javax.swing.JFrame {
         });
         jPanel1.add(LastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 90, -1));
 
-        MaritalStatus.setEditable(false);
-        MaritalStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MaritalStatusActionPerformed(evt);
-            }
-        });
-        jPanel1.add(MaritalStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 90, -1));
-
-        Pregnant.setEditable(false);
-        Pregnant.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PregnantActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Pregnant, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 90, -1));
-
         Wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray.png"))); // NOI18N
         Wallpaper.setText("jLabel2");
         jPanel1.add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 430, 420));
 
         jTabbedPane1.addTab("Patient Information", jPanel1);
-
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        AgeLabel.setText("Age");
-        jPanel2.add(AgeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
-
-        VaccinesLabel.setText("Vaccines");
-        jPanel2.add(VaccinesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
-
-        Height.setEditable(false);
-        Height.setText("6.3");
-        Height.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HeightActionPerformed(evt);
-            }
-        });
-        jPanel2.add(Height, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 90, -1));
-
-        Weight.setEditable(false);
-        Weight.setText("79");
-        Weight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WeightActionPerformed(evt);
-            }
-        });
-        jPanel2.add(Weight, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 90, -1));
-
-        Age.setEditable(false);
-        Age.setText("45");
-        Age.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AgeActionPerformed(evt);
-            }
-        });
-        jPanel2.add(Age, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 90, -1));
-
-        HeightLabel.setText("Height (ft)");
-        jPanel2.add(HeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        WeightLabel.setText("Weight (kg)");
-        jPanel2.add(WeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
-
-        VisitsLabel.setText("Visits");
-        jPanel2.add(VisitsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
-
-        MedicationLabel.setText("Medication");
-        jPanel2.add(MedicationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
-
-        AllergiesLabel.setText("Allergies");
-        jPanel2.add(AllergiesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Covid", "Influenza" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        Vaccines.setViewportView(jList1);
-
-        jPanel2.add(Vaccines, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 130, 70));
-
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "November 10 2021", "January 15 2022", "January 28 2022", "March 17 2022", "" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        Visits.setViewportView(jList2);
-
-        jPanel2.add(Visits, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 270, 60));
-
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Albuterol", "Losartan (100 mg)", "Prednisone (20 mg)" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        Medication.setViewportView(jList3);
-
-        jPanel2.add(Medication, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 130, 70));
-
-        jList4.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Iodine", "Amoxicillin", "Ceftriaxone" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        Allergies.setViewportView(jList4);
-
-        jPanel2.add(Allergies, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 270, 60));
-
-        Wallpaper2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray.png"))); // NOI18N
-        jPanel2.add(Wallpaper2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 430, 430));
-
-        jTabbedPane1.addTab("Medical Records", jPanel2);
 
         jPanel3.setMaximumSize(new java.awt.Dimension(430, 420));
         jPanel3.setMinimumSize(new java.awt.Dimension(430, 420));
@@ -442,21 +304,13 @@ public class Billing extends javax.swing.JFrame {
         TotalLabel.setText("Total Amount $");
         jPanel3.add(TotalLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
-        Save.setText("Save");
-        Save.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveActionPerformed(evt);
-            }
-        });
-        jPanel3.add(Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
-
         GenerateBill.setText("Generate Bill");
         GenerateBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GenerateBillActionPerformed(evt);
             }
         });
-        jPanel3.add(GenerateBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
+        jPanel3.add(GenerateBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
 
         BillNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -479,7 +333,11 @@ public class Billing extends javax.swing.JFrame {
         });
         jPanel3.add(Tax, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 90, -1));
 
-        Insurance.setText("jTextField1");
+        Insurance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsuranceActionPerformed(evt);
+            }
+        });
         jPanel3.add(Insurance, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 90, -1));
 
         Wallpaper3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray.png"))); // NOI18N
@@ -540,95 +398,11 @@ public class Billing extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameActionPerformed
-    // TODO add your handling code here:
-    }//GEN-LAST:event_FirstNameActionPerformed
-
-    private void GenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderActionPerformed
-    Gender.setEditable(false);   
-    }//GEN-LAST:event_GenderActionPerformed
-
-    private void ZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZipActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ZipActionPerformed
-
-    private void CityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CityActionPerformed
-
-    private void StateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_StateActionPerformed
-
-    private void HeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HeightActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HeightActionPerformed
-
-    private void WeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WeightActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_WeightActionPerformed
-
-    private void AgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AgeActionPerformed
-
-    private void LastNameBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameBillActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LastNameBillActionPerformed
-
-    private void TotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TotalActionPerformed
-
-    private void DateReleasedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateReleasedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DateReleasedActionPerformed
-
-    private void FirstNameBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameBillActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FirstNameBillActionPerformed
-
-    private void DateAdmittedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateAdmittedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DateAdmittedActionPerformed
-
     private void LogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutActionPerformed
         this.dispose();
         Login login = new Login();
         login.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_LogoutActionPerformed
-
-    private void DOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DOBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DOBActionPerformed
-
-    private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LastNameActionPerformed
-
-    private void MaritalStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaritalStatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MaritalStatusActionPerformed
-
-    private void PregnantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PregnantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PregnantActionPerformed
-
-    private void PrimaryPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrimaryPhoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PrimaryPhoneActionPerformed
-
-    private void BillNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BillNumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BillNumActionPerformed
-
-    private void DueDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DueDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DueDateActionPerformed
-
-    private void TaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TaxActionPerformed
 
     private void OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKMouseClicked
 
@@ -640,68 +414,17 @@ public class Billing extends javax.swing.JFrame {
         billing.setVisible(true);
     }//GEN-LAST:event_OKActionPerformed
 
-    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+    private void TaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaxActionPerformed
         // TODO add your handling code here:
-        // get all the values then push bill to DB
-        int daysStayed;
-                
-        
-        localFirstName = FirstName.getText();
-        localLastName = LastName.getText();
-        localDOB = DOB.getText();
-        localMaritalStatus = MaritalStatus.getText();
-        localGender = Gender.getText();
-        localPregnant = Pregnant.getText();
-        localPrimaryPhone = PrimaryPhone.getText();
-        localSecondaryPhone = SecondaryPhone.getText();
-        localEmail = Email.getText();
-        localAddress = Address.getText(); 
-        localApt = Apt.getText();
-        localCity = City.getText();
-        localState = State.getText();
-        localZip = Zip.getText();
-        localHeight = Height.getText();
-        localAge = Age.getText();
-        localWeight = Weight.getText();
-        localVisits = jList2.getSelectedValue(); //jList2 gets current selected value
-        localMedications = jList3.getSelectedValue(); //jList3 this is an array of values
-        localVaccines = jList1.getSelectedValue(); //jList1
-        localAllergies = jList4.getSelectedValue(); //jlist4
-        localBillNum = BillNum.getText();
-        localFirstNameBill = FirstNameBill.getText();
-        localLastNameBill = LastNameBill.getText();
-        
-        //super ugly parsing for number of days stayed
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM ddd");   
-        
-        
-        
-        try {
-            localDateReleased = sdf.parse(DateReleased.getText());
-            localDateAdmitted = sdf.parse(DateAdmitted.getText());
-        } catch (ParseException ex) {
-            Logger.getLogger(Billing.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        long t = localDateAdmitted.getTime() - localDateReleased.getTime();
-        daysStayed = (int) TimeUnit.DAYS.convert(t,TimeUnit.MILLISECONDS);
-       
-        
-        localBillable = jList5.getSelectedValue(); //jList5
-        localTax= Tax.getText();
-        localDueDate = DueDate.getText();
-        localTotal= Total.getText();
-        Random randy = new Random();
-        System.out.println("Save button pushed");
-        azure db = new azure();
-        db.connect();
-        int charge = daysStayed * 1000;
-        //actual submitting happens here
-        db.setBill(randy.nextInt(), randy.nextInt(), charge);
-        
-        db.close();
+    }//GEN-LAST:event_TaxActionPerformed
 
-    }//GEN-LAST:event_SaveActionPerformed
+    private void DueDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DueDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DueDateActionPerformed
+
+    private void BillNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BillNumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BillNumActionPerformed
 
     private void GenerateBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateBillActionPerformed
         // TODO add your handling code here:
@@ -710,6 +433,62 @@ public class Billing extends javax.swing.JFrame {
         db.connect();
         db.close();
     }//GEN-LAST:event_GenerateBillActionPerformed
+
+    private void DateAdmittedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateAdmittedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DateAdmittedActionPerformed
+
+    private void FirstNameBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameBillActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstNameBillActionPerformed
+
+    private void DateReleasedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateReleasedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DateReleasedActionPerformed
+
+    private void TotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TotalActionPerformed
+
+    private void LastNameBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameBillActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LastNameBillActionPerformed
+
+    private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LastNameActionPerformed
+
+    private void StateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StateActionPerformed
+
+    private void CityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CityActionPerformed
+
+    private void PrimaryPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrimaryPhoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PrimaryPhoneActionPerformed
+
+    private void DOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DOBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DOBActionPerformed
+
+    private void FirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstNameActionPerformed
+
+    private void ZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZipActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ZipActionPerformed
+
+    private void GenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderActionPerformed
+        Gender.setEditable(false);
+    }//GEN-LAST:event_GenderActionPerformed
+
+    private void InsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsuranceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InsuranceActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -749,10 +528,6 @@ public class Billing extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Address;
     private javax.swing.JLabel AddressLabel;
-    private javax.swing.JTextField Age;
-    private javax.swing.JLabel AgeLabel;
-    private javax.swing.JScrollPane Allergies;
-    private javax.swing.JLabel AllergiesLabel;
     private javax.swing.JTextField Apt;
     private javax.swing.JLabel AptLabel;
     private javax.swing.JTextField BillNum;
@@ -776,8 +551,6 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JTextField Gender;
     private javax.swing.JLabel GenderLabel;
     private javax.swing.JButton GenerateBill;
-    private javax.swing.JTextField Height;
-    private javax.swing.JLabel HeightLabel;
     private javax.swing.JTextField Insurance;
     private javax.swing.JLabel InsuranceLabel;
     private javax.swing.JScrollPane Items;
@@ -787,17 +560,10 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JLabel LastNameBillLabel;
     private javax.swing.JLabel LastNameLabel;
     private javax.swing.JButton Logout;
-    private javax.swing.JTextField MaritalStatus;
-    private javax.swing.JLabel MaritalStatusLabel;
-    private javax.swing.JScrollPane Medication;
-    private javax.swing.JLabel MedicationLabel;
     private javax.swing.JButton OK;
     private javax.swing.JScrollPane PatientSelect;
-    private javax.swing.JTextField Pregnant;
-    private javax.swing.JLabel PregnantLabel;
     private javax.swing.JTextField PrimaryPhone;
     private javax.swing.JLabel PrimaryPhoneLabel;
-    private javax.swing.JButton Save;
     private javax.swing.JTextField SecondaryPhone;
     private javax.swing.JLabel SecondaryPhoneLabel;
     private javax.swing.JTextField State;
@@ -806,29 +572,17 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JLabel TaxLabel;
     private javax.swing.JTextField Total;
     private javax.swing.JLabel TotalLabel;
-    private javax.swing.JScrollPane Vaccines;
-    private javax.swing.JLabel VaccinesLabel;
-    private javax.swing.JScrollPane Visits;
-    private javax.swing.JLabel VisitsLabel;
     private javax.swing.JLabel Wallpaper;
-    private javax.swing.JLabel Wallpaper2;
     private javax.swing.JLabel Wallpaper3;
-    private javax.swing.JTextField Weight;
-    private javax.swing.JLabel WeightLabel;
     private javax.swing.JTextField Zip;
     private javax.swing.JLabel ZipLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
-    private javax.swing.JList<String> jList4;
     private javax.swing.JList<String> jList5;
     private javax.swing.JList<String> jList6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
