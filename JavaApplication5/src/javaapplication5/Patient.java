@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author alana
@@ -130,6 +132,7 @@ public class Patient extends javax.swing.JFrame {
         DOB = new javax.swing.JTextField();
         Wallpaper = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -149,7 +152,7 @@ public class Patient extends javax.swing.JFrame {
                 LogoutActionPerformed(evt);
             }
         });
-        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
+        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, -1));
 
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(503, 300));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(503, 300));
@@ -343,7 +346,16 @@ public class Patient extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 60, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background blue 2.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
@@ -587,6 +599,13 @@ public class Patient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextArea2MouseClicked
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+            this.dispose();
+            PatientSearch patientSearch = new PatientSearch();
+            patientSearch.setVisible(true);
+   
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void jTextArea1ActionPerformed(java.awt.event.ActionEvent evt)
     {
         
@@ -674,6 +693,7 @@ public class Patient extends javax.swing.JFrame {
     private javax.swing.JTextField Zip;
     private javax.swing.JLabel ZipLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
