@@ -261,8 +261,12 @@ public class Doctor extends javax.swing.JFrame {
         Medication = new javax.swing.JList<>();
         TestLabel = new javax.swing.JLabel();
         MedicationLabel = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        SelectedMedication = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         Test = new javax.swing.JList<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        SelectedTest = new javax.swing.JTextArea();
         Wallpaper2 = new javax.swing.JLabel();
         DiagnosisLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -273,6 +277,11 @@ public class Doctor extends javax.swing.JFrame {
         Submit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Diagnosis = new javax.swing.JComboBox<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        Notes1 = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        Discharge = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -434,13 +443,20 @@ public class Doctor extends javax.swing.JFrame {
         Medication.setToolTipText("");
         jScrollPane.setViewportView(Medication);
 
-        jPanel3.add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 270, 80));
+        jPanel3.add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 270, 80));
 
         TestLabel.setText("Select tests");
-        jPanel3.add(TestLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jPanel3.add(TestLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         MedicationLabel.setText("Prescribe medication");
-        jPanel3.add(MedicationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        jPanel3.add(MedicationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+
+        SelectedMedication.setColumns(20);
+        SelectedMedication.setLineWrap(true);
+        SelectedMedication.setRows(5);
+        jScrollPane6.setViewportView(SelectedMedication);
+
+        jPanel3.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 270, 20));
 
         Test.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Xray", "CT scan", "MRI", "CAT scan", "PET scan", "Blood test", "Urine test", "Stool test" };
@@ -449,7 +465,14 @@ public class Doctor extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(Test);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 270, 80));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 270, 80));
+
+        SelectedTest.setColumns(20);
+        SelectedTest.setLineWrap(true);
+        SelectedTest.setRows(5);
+        jScrollPane5.setViewportView(SelectedTest);
+
+        jPanel3.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 270, 20));
 
         Wallpaper2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray 2.jpg"))); // NOI18N
         Wallpaper2.setText("jLabel18");
@@ -460,7 +483,7 @@ public class Doctor extends javax.swing.JFrame {
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 320));
 
         DiagnosisLabel.setText("Diagnosis");
-        getContentPane().add(DiagnosisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, -1));
+        getContentPane().add(DiagnosisLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, -1, -1));
 
         Notes.setColumns(20);
         Notes.setLineWrap(true);
@@ -468,10 +491,10 @@ public class Doctor extends javax.swing.JFrame {
         Notes.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane2.setViewportView(Notes);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 290, 100));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 290, 100));
 
         NotesLabel.setText("Notes");
-        getContentPane().add(NotesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
+        getContentPane().add(NotesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
 
         jList6.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "John Doe", "Jane Doe" };
@@ -495,7 +518,7 @@ public class Doctor extends javax.swing.JFrame {
                 SubmitActionPerformed(evt);
             }
         });
-        getContentPane().add(Submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, 70, 20));
+        getContentPane().add(Submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 280, 70, 20));
 
         jLabel1.setText("Select Patient");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
@@ -506,7 +529,29 @@ public class Doctor extends javax.swing.JFrame {
                 DiagnosisActionPerformed(evt);
             }
         });
-        getContentPane().add(Diagnosis, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
+        getContentPane().add(Diagnosis, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, -1, -1));
+
+        Notes1.setColumns(20);
+        Notes1.setLineWrap(true);
+        Notes1.setRows(5);
+        Notes1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jScrollPane4.setViewportView(Notes1);
+
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 290, 100));
+
+        jLabel6.setText("Doctor's Notes");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, -1, -1));
+
+        jLabel7.setText("Discharge Patient?");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, -1, -1));
+
+        Discharge.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
+        Discharge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DischargeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Discharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, 100, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background 6.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -647,6 +692,10 @@ public class Doctor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_LastNameActionPerformed
 
+    private void DischargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DischargeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DischargeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -699,6 +748,7 @@ public class Doctor extends javax.swing.JFrame {
     private javax.swing.JLabel DOBLabel;
     private javax.swing.JComboBox<String> Diagnosis;
     private javax.swing.JLabel DiagnosisLabel;
+    private javax.swing.JComboBox<String> Discharge;
     private javax.swing.JTextField Ethnicity;
     private javax.swing.JLabel EthnicityLabel;
     private javax.swing.JTextField FirstName;
@@ -715,12 +765,15 @@ public class Doctor extends javax.swing.JFrame {
     private javax.swing.JList<String> Medication;
     private javax.swing.JLabel MedicationLabel;
     private javax.swing.JTextArea Notes;
+    private javax.swing.JTextArea Notes1;
     private javax.swing.JLabel NotesLabel;
     private javax.swing.JScrollPane PatientSelect;
     private javax.swing.JTextField Religion;
     private javax.swing.JLabel ReligionLabel;
     private javax.swing.JTextField SSN;
     private javax.swing.JLabel SSNLabel;
+    private javax.swing.JTextArea SelectedMedication;
+    private javax.swing.JTextArea SelectedTest;
     private javax.swing.JTextField SexuallyActive;
     private javax.swing.JLabel SexuallyActiveLabel;
     private javax.swing.JButton Submit;
@@ -736,6 +789,8 @@ public class Doctor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JList<String> jList6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -744,6 +799,9 @@ public class Doctor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 

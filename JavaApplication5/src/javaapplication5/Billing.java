@@ -95,7 +95,6 @@ public class Billing extends javax.swing.JFrame {
         InsuranceLabel = new javax.swing.JLabel();
         DateReleasedLabel = new javax.swing.JLabel();
         FirstNameBill = new javax.swing.JTextField();
-        Insurance = new javax.swing.JComboBox<>();
         ItemsLabel = new javax.swing.JLabel();
         DueDateLabel = new javax.swing.JLabel();
         Items = new javax.swing.JScrollPane();
@@ -109,6 +108,7 @@ public class Billing extends javax.swing.JFrame {
         BillNum = new javax.swing.JTextField();
         DueDate = new javax.swing.JTextField();
         Tax = new javax.swing.JTextField();
+        Insurance = new javax.swing.JTextField();
         Wallpaper3 = new javax.swing.JLabel();
         Logout = new javax.swing.JButton();
         PatientSelect = new javax.swing.JScrollPane();
@@ -411,9 +411,6 @@ public class Billing extends javax.swing.JFrame {
         });
         jPanel3.add(FirstNameBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 90, -1));
 
-        Insurance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CT Medicare", "CT Medicaid", "United Healthcare", "ConnectiCare", "Anthem" }));
-        jPanel3.add(Insurance, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 100, -1));
-
         ItemsLabel.setText("Billable Items");
         jPanel3.add(ItemsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
 
@@ -481,6 +478,9 @@ public class Billing extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Tax, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 90, -1));
+
+        Insurance.setText("jTextField1");
+        jPanel3.add(Insurance, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 90, -1));
 
         Wallpaper3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication5/images/background gray.png"))); // NOI18N
         Wallpaper3.setText("jLabel24");
@@ -778,7 +778,7 @@ public class Billing extends javax.swing.JFrame {
     private javax.swing.JButton GenerateBill;
     private javax.swing.JTextField Height;
     private javax.swing.JLabel HeightLabel;
-    private javax.swing.JComboBox<String> Insurance;
+    private javax.swing.JTextField Insurance;
     private javax.swing.JLabel InsuranceLabel;
     private javax.swing.JScrollPane Items;
     private javax.swing.JLabel ItemsLabel;
