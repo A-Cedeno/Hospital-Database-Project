@@ -13,6 +13,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 /**
  *
  * @author alana
@@ -25,11 +28,188 @@ public class Doctor extends javax.swing.JFrame {
     public Doctor() throws SQLException {
         initComponents();
 
+        setList();
+    }
+
+    public void setList() throws SQLException
+    {
         azure db = new azure();
+        //DefaultListModel empty = new DefaultListModel();
+        //jList6.setModel(empty);
         ViewPatient viewPatient = new ViewPatient();
         
+        DefaultListModel tempList = viewPatient.setPatient(); 
+        DefaultListModel temp = new DefaultListModel();
+        db.connect();
+        //If the nurse has already filled in the information of a patient and set a decision on whether they should be admitted or not, that patient no longer appears
+        /*
+        for(int i = 0; i < 2; i++)
+        {
+            //System.out.println("length of temp list: " + tempList.size());
+            System.out.println("items in temp list: " + tempList);
+            String[] names = (tempList.get(i)).toString().split("[^A-Za-z]+");
+            String firstName = names[0];
+            System.out.println(firstName);
+            String lastName = names[1];
+            System.out.println(lastName);
 
-        jList6.setModel(viewPatient.setPatient());
+            
+            ResultSet patientInfo = db.getPatientByName(firstName, lastName);
+            localPatientID = patientInfo.getInt(1);
+            
+            if (db.getVisit(localPatientID) != null)
+            {
+                System.out.println("Removing: " + firstName);
+                tempList.remove(i);
+            }
+        }
+        */
+
+        Object[] patientNames = tempList.toArray();
+        
+        for(int i = 0; i < 2; i++)
+        {
+            //System.out.println("length of temp list: " + tempList.size());
+            System.out.println("items in temp list: " + tempList);
+            String[] names = (patientNames[i]).toString().split("[^A-Za-z]+");
+            String firstName = names[0];
+            System.out.println(firstName);
+            String lastName = names[1];
+            System.out.println(lastName);
+
+            
+            ResultSet patientInfo = db.getPatientByName(firstName, lastName);
+            localPatientID = patientInfo.getInt(1);
+            
+            if (db.getVisit(localPatientID) != null)
+            {
+                System.out.println("in here");
+                ResultSet visitInfo = db.getVisit(localPatientID);
+                if(visitInfo.getString("Admittance_Status").contains("Yes"))
+                {
+                    System.out.println("In here 2");
+                    temp.addElement(firstName + " " + lastName);
+                }
+            }
+        }
+
+        db.close();
+
+        //jList6.setModel(tempList);
+        if(temp.isEmpty())
+        {
+            temp.addElement("No current patients to service");
+            jList6.setModel(temp);
+        }
+        else
+        {
+            jList6.setModel(temp);
+        }
+
+        ListSelectionListener ltd = new ListSelectionListener()
+        {
+            public void valueChanged(ListSelectionEvent listSelection)
+            {
+                boolean adjust = listSelection.getValueIsAdjusting();
+                if(!adjust)
+                {
+                    JList l = (JList) listSelection.getSource();
+                    String selectedValue = l.getSelectedValue().toString();
+                    System.out.println("List Selection: " + selectedValue);
+                    try
+                    {
+                        //emptyFields();
+                        setPatient(selectedValue);
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                }
+            }
+        };
+        jList6.addListSelectionListener(ltd);
+    }
+
+
+    public void setPatient(String name) throws SQLException
+    {
+        String[] names = name.split("[^A-Za-z]+");
+        String firstName = names[0];
+        System.out.println(firstName);
+        String lastName = names[1];
+        System.out.println(lastName);
+
+        azure db = new azure();
+        db.connect();
+        ResultSet patientInfo = db.getPatientByName(firstName, lastName);
+        localPatientID = patientInfo.getInt(1);
+
+        /*
+        ResultSet visitInfo = db.getVisit(localPatientID);
+        if(db.getVisit(localPatientID) == null || (visitInfo.getString("Admittance_Status")).equals("Yes"))
+        {
+            populateFields(patientInfo);
+        }
+        */
+        try
+        {
+            System.out.println("In setPatient method of Nurse");
+            populateFields(patientInfo);
+
+        }
+        catch (Exception e)
+        {
+        }
+        db.close();
+    }
+
+    public void populateFields(ResultSet patientInfo) throws SQLException
+    {
+        FirstName.setText(patientInfo.getString(2).replaceAll("\\s", ""));
+        
+        LastName.setText(patientInfo.getString(3).replaceAll("\\s", ""));
+        DOB.setText(patientInfo.getString(4));
+        Gender.setText(patientInfo.getString(5).replaceAll("\\s", ""));
+
+        Ethnicity.setText(patientInfo.getString(12).replaceAll("\\s", ""));
+        
+
+        Religion.setText(patientInfo.getString(13).replaceAll("\\s", ""));
+        SSN.setText(patientInfo.getString(14).replaceAll("\\s", ""));
+        SexuallyActive.setText(patientInfo.getString(15).replaceAll("\\s", ""));
+        BloodType.setText(patientInfo.getString(16).replaceAll("\\s", ""));
+
+        azure db = new azure();
+        if (db.getVisit(localPatientID) != null)
+        {
+            ResultSet visitInfo = db.getVisit(localPatientID);
+            Notes.setText(visitInfo.getString(4).replaceAll("\\s" + "\\s", ""));
+            BloodPressure.setText(visitInfo.getString(6).replaceAll("\\s", ""));
+            HeartRate.setText(visitInfo.getString(7).replaceAll("\\s", ""));
+            Height.setText(visitInfo.getString(8).replaceAll("\\s", ""));
+            Weight.setText(visitInfo.getString(9).replaceAll("\\s", ""));
+            //Admit.setSelectedItem(visitInfo.getString(13).replaceAll("\\s", ""));
+        }
+    }
+
+    public void emptyFields()
+    {
+        jList6.removeAll();
+        FirstName.setText("");
+        LastName.setText("");
+        DOB.setText("");
+        Gender.setText("");
+        Ethnicity.setText("");
+        Religion.setText("");
+        SSN.setText("");
+        SexuallyActive.setText("Yes");
+        BloodType.setText("A");
+        Notes.setText("");
+        BloodPressure.setText("");
+        HeartRate.setText("");
+        Height.setText("");
+        Weight.setText("");
+        //Admit.setSelectedItem("Yes");
     }
 
     /**
@@ -363,55 +543,92 @@ public class Doctor extends javax.swing.JFrame {
        azure db = new azure();
         db.connect(); 
           localBloodPressure = (String) BloodPressure.getText();
-          localHeartRate = HeartRate.getText();
-          localBloodType = (String) BloodType.getText();
-          localFirstName = FirstName.getText();
-          localLastName = LastName.getText();
-          localSexuallyActive = (String) SexuallyActive.getText();
-          localHeight = Height.getText();
-          localWeight = Weight.getText();
-          localGender = (String) Gender.getText();
-          localReligion = (String) Religion.getText();
-          localEthnicity = (String) Ethnicity.getText();
-          localDOB = DOB.getText();
-          localSSN = SSN.getText();
-          localAllergies = Allergies.getText();
-          localNotes = Notes.getText();
-          localDiagnosis = (String) Diagnosis.getSelectedItem();
-          localTest = (String) Test.getSelectedValue();
-          localMedication = (String) Medication.getSelectedValue();
+          localHeartRate = (String) HeartRate.getText();
+            localTest = (String) Test.getSelectedValue();
+            localMedication = (String) Medication.getSelectedValue();
+            localDiagnosis = (String) Diagnosis.getSelectedItem();
+          //localBloodType = (String) BloodType.getSelectedItem();
+          //localFirstName = FirstName.getText();
+          //localLastName = LastName.getText();
+          //localSexuallyActive = (String) SexuallyActive.getSelectedItem();
+          localHeight = (String) Height.getText();
+          localWeight = (String) Weight.getText();
+          //localGender = (String) Gender.getText();
+          //localReligion = (String) Religion.getText();
+          //localEthnicity = (String) Ethnicity.getText();
+          //localDOB = DOB.getText();
+          //localSSN = SSN.getText();
+          //localAllergies = Allergies.getText();
+          localNotes = (String) Notes.getText();
+        //need to set a handler for admittance specifically as well
+        //localAdmittance = (String) Admit.getSelectedItem();
         
-       if (db.getPatientByName(localFirstName,localLastName) == null) //if this returns null that means there is no patient with that name
-       {
-        ResultSet tempPatient = db.getPatientByName(localFirstName,localLastName);
-       }
-       else
-       {
+        //if a patient already has an exisiting visit record that is not discharged, modify the record instead. Otherwise, create a new record for that patient
+        //this will require that the information not directly controlled by nurse will need to be obtained from db and then saved back in there
+        
         ArrayList<String> localPatientInfo = new ArrayList<String>();
-        localPatientInfo.add(localFirstName);
-        localPatientInfo.add(localLastName);
-        localPatientInfo.add(localDOB);
-        localPatientInfo.add(localGender);
-        localPatientInfo.add(localAllergies);
-        localPatientInfo.add(localEthnicity);
-        localPatientInfo.add(localReligion);
-        localPatientInfo.add(localSSN);
-        localPatientInfo.add(localSexuallyActive);
-        localPatientInfo.add(localBloodType);
-        localPatientInfo.add(localNotes);
-        localPatientInfo.add(localHeartRate);
-        localPatientInfo.add(localBloodPressure);
-        localPatientInfo.add(localHeight);
-        localPatientInfo.add(localWeight);
-        localPatientInfo.add(localDiagnosis);
-        localPatientInfo.add(localTest);
-        localPatientInfo.add(localMedication);
-        Random patientID = new Random();
-    //    localPatientInfo.add (localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType);
-        db.setPatient(patientID.nextInt(),localPatientInfo);
-       }
+        //localPatientInfo.add(localPatientID);
+        //need to grab what's there and save it there again
+        ResultSet visitInfo = db.getVisit(localPatientID);
+        try
+        {
 
-      db.close();
+            localPatientInfo.add(visitInfo.getString(3));
+            //nurse specific notes
+            localPatientInfo.add(visitInfo.getString(4));
+            //discharge instructions, must be resaved
+            localPatientInfo.add("");
+            localPatientInfo.add(visitInfo.getString(6));
+            localPatientInfo.add(visitInfo.getString(7));
+            localPatientInfo.add(visitInfo.getString(8));
+            localPatientInfo.add(visitInfo.getString(9));
+            //local diagnosis, must be resaved
+            localPatientInfo.add(localDiagnosis);
+            //local prescriptions, must be resaved
+            localPatientInfo.add(localMedication);
+            //local tests, must be resaved
+            localPatientInfo.add(localTest);
+            localPatientInfo.add(visitInfo.getString(13));
+            //addmitance date
+            localPatientInfo.add(visitInfo.getString(14));
+            //discharge date
+            localPatientInfo.add(""); //handled by doctor
+            //discharge Status 
+            localPatientInfo.add(""); //handled by doctor
+            //localPatientInfo.add(localNotes);
+            //doctor note, must be resaved
+            localPatientInfo.add(""); //handled by doctor, must add a text box for this or simply remove this column and put these notes in discharge instructions
+            db.updateVisit(localPatientID, visitInfo.getInt("Visit_ID") ,localPatientInfo);
+        }
+        catch (Exception e)
+        {
+        }
+        
+            /*
+            if(localPatientID == -1) System.out.println("Error! Must select a patient before submitting visit records!"); //add handling here in ui
+            if (db.getVisit(localPatientID) != null)
+            {
+                //add modify visit method here, which still requires implementation in azure.java
+                //ResultSet visitInfo = db.getVisit(localPatientID);
+            }
+            else
+            {
+                db.setVisit(localPatientID, localPatientInfo);
+            }
+            */
+        //Random patientID = new Random();
+    //    localPatientInfo.add (localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType);
+        //db.setPatient(patientID.nextInt(),localPatientInfo);
+       
+        try
+        {    
+            db.close();  
+            emptyFields();
+            setList(); 
+        }
+        catch (Exception e)
+        {
+        }
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void FirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameActionPerformed
@@ -548,4 +765,5 @@ public class Doctor extends javax.swing.JFrame {
     private String localDiagnosis;
     private String localTest;
     private String localMedication;
+    private int localPatientID = -1;
 }

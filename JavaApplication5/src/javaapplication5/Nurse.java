@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -27,11 +28,82 @@ public class Nurse extends javax.swing.JFrame {
      */
     public Nurse() throws SQLException {
         initComponents();
+        setList();
+    }
+
+
+    public void setList() throws SQLException
+    {
         azure db = new azure();
+        //DefaultListModel empty = new DefaultListModel();
+        //jList6.setModel(empty);
         ViewPatient viewPatient = new ViewPatient();
         
+        DefaultListModel tempList = viewPatient.setPatient(); 
+        DefaultListModel temp = new DefaultListModel();
+        db.connect();
+        //If the nurse has already filled in the information of a patient and set a decision on whether they should be admitted or not, that patient no longer appears
+        /*
+        for(int i = 0; i < 2; i++)
+        {
+            //System.out.println("length of temp list: " + tempList.size());
+            System.out.println("items in temp list: " + tempList);
+            String[] names = (tempList.get(i)).toString().split("[^A-Za-z]+");
+            String firstName = names[0];
+            System.out.println(firstName);
+            String lastName = names[1];
+            System.out.println(lastName);
 
-        jList6.setModel(viewPatient.setPatient());
+            
+            ResultSet patientInfo = db.getPatientByName(firstName, lastName);
+            localPatientID = patientInfo.getInt(1);
+            
+            if (db.getVisit(localPatientID) != null)
+            {
+                System.out.println("Removing: " + firstName);
+                tempList.remove(i);
+            }
+        }
+        */
+
+        Object[] patientNames = tempList.toArray();
+        
+        for(int i = 0; i < 2; i++)
+        {
+            //System.out.println("length of temp list: " + tempList.size());
+            System.out.println("items in temp list: " + tempList);
+            String[] names = (patientNames[i]).toString().split("[^A-Za-z]+");
+            String firstName = names[0];
+            System.out.println(firstName);
+            String lastName = names[1];
+            System.out.println(lastName);
+
+            
+            ResultSet patientInfo = db.getPatientByName(firstName, lastName);
+            localPatientID = patientInfo.getInt(1);
+            
+            if (db.getVisit(localPatientID) != null)
+            {
+                System.out.println("Removing: " + firstName);
+            }
+            else 
+            {
+                temp.addElement(firstName + " " + lastName);
+            }
+        }
+
+        db.close();
+
+        //jList6.setModel(tempList);
+        if(temp.isEmpty())
+        {
+            temp.addElement("No current patients to service");
+            jList6.setModel(temp);
+        }
+        else
+        {
+            jList6.setModel(temp);
+        }
 
         ListSelectionListener ltd = new ListSelectionListener()
         {
@@ -45,6 +117,7 @@ public class Nurse extends javax.swing.JFrame {
                     System.out.println("List Selection: " + selectedValue);
                     try
                     {
+                        //emptyFields();
                         setPatient(selectedValue);
                     }
                     catch (Exception e)
@@ -55,7 +128,7 @@ public class Nurse extends javax.swing.JFrame {
         };
         jList6.addListSelectionListener(ltd);
     }
-
+    
     public void setPatient(String name) throws SQLException
     {
         String[] names = name.split("[^A-Za-z]+");
@@ -115,6 +188,26 @@ public class Nurse extends javax.swing.JFrame {
             Weight.setText(visitInfo.getString(9).replaceAll("\\s", ""));
             Admit.setSelectedItem(visitInfo.getString(13).replaceAll("\\s", ""));
         }
+    }
+
+    public void emptyFields()
+    {
+        jList6.removeAll();
+        FirstName.setText("");
+        LastName.setText("");
+        DOB.setText("");
+        Gender.setText("");
+        Ethnicity.setText("");
+        Religion.setText("");
+        SSN.setText("");
+        SexuallyActive.setSelectedItem("Yes");
+        BloodType.setSelectedItem("A");
+        Notes.setText("");
+        BloodPressure.setText("");
+        HeartRate.setText("");
+        Height.setText("");
+        Weight.setText("");
+        Admit.setSelectedItem("Yes");
     }
 
     /**
@@ -447,36 +540,45 @@ public class Nurse extends javax.swing.JFrame {
         
         //if a patient already has an exisiting visit record that is not discharged, modify the record instead. Otherwise, create a new record for that patient
         //this will require that the information not directly controlled by nurse will need to be obtained from db and then saved back in there
-        ArrayList<String> localPatientInfo = new ArrayList<String>();
-        //localPatientInfo.add(localPatientID);
-        //need to grab what's there and save it there again
-        localPatientInfo.add("");
-        //nurse specific notes
-        localPatientInfo.add(localNotes);
-        //discharge instructions, must be resaved
-        localPatientInfo.add("");
-        localPatientInfo.add(localBloodPressure);
-        localPatientInfo.add(localHeartRate);
-        localPatientInfo.add(localHeight);
-        localPatientInfo.add(localWeight);
-        //local diagnosis, must be resaved
-        localPatientInfo.add("");
-        //local prescriptions, must be resaved
-        localPatientInfo.add("");
-        //local tests, must be resaved
-        localPatientInfo.add("");
-        localPatientInfo.add(localAdmittance);
-        //addmitance date
-        localPatientInfo.add("");
-        //discharge date
-        localPatientInfo.add("");
-        //discharge Status 
-        localPatientInfo.add("");
-        //localPatientInfo.add(localNotes);
-        //doctor note, must be resaved
-        localPatientInfo.add("");
-
-
+        if (db.getVisit(localPatientID) != null)
+        {
+            //add modify visit method here, which still requires implementation in azure.java
+            //ResultSet visitInfo = db.getVisit(localPatientID);
+            
+        }
+        else 
+        {
+            ArrayList<String> localPatientInfo = new ArrayList<String>();
+            //localPatientInfo.add(localPatientID);
+            //need to grab what's there and save it there again
+            localPatientInfo.add("");
+            //nurse specific notes
+            localPatientInfo.add(localNotes);
+            //discharge instructions, must be resaved
+            localPatientInfo.add("");
+            localPatientInfo.add(localBloodPressure);
+            localPatientInfo.add(localHeartRate);
+            localPatientInfo.add(localHeight);
+            localPatientInfo.add(localWeight);
+            //local diagnosis, must be resaved
+            localPatientInfo.add("");
+            //local prescriptions, must be resaved
+            localPatientInfo.add("");
+            //local tests, must be resaved
+            localPatientInfo.add("");
+            localPatientInfo.add(localAdmittance);
+            //addmitance date
+            localPatientInfo.add("");
+            //discharge date
+            localPatientInfo.add("");
+            //discharge Status 
+            localPatientInfo.add("");
+            //localPatientInfo.add(localNotes);
+            //doctor note, must be resaved
+            localPatientInfo.add("");
+            db.setVisit(localPatientID, localPatientInfo);
+        }
+            /*
             if(localPatientID == -1) System.out.println("Error! Must select a patient before submitting visit records!"); //add handling here in ui
             if (db.getVisit(localPatientID) != null)
             {
@@ -487,12 +589,23 @@ public class Nurse extends javax.swing.JFrame {
             {
                 db.setVisit(localPatientID, localPatientInfo);
             }
+            */
         //Random patientID = new Random();
     //    localPatientInfo.add (localFirstName, localLastName, localAddress, localDOB, localGender, localPrimaryPhysician, localHealthInsurance, localCovidVaccine, localSecondaryPhone, localAllergies, localMedicalCondition, localEthnicity,localReligion,localSSN, localSexuallyActive,localBloodType);
         //db.setPatient(patientID.nextInt(),localPatientInfo);
        
-
-      db.close();                              
+        try
+        {    
+            db.close();  
+            emptyFields();
+            setList(); 
+        }
+        catch (Exception e)
+        {
+        }
+    
+    
+           
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void HeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HeightActionPerformed
