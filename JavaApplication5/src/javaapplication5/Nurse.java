@@ -10,8 +10,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
@@ -26,7 +33,7 @@ public class Nurse extends javax.swing.JFrame {
     /**
      * Creates new form Nurse
      */
-    public Nurse() throws SQLException {
+    public Nurse() throws SQLException, ParseException {
         initComponents();
         setList();
     }
@@ -208,6 +215,16 @@ public class Nurse extends javax.swing.JFrame {
         Height.setText("");
         Weight.setText("");
         Admit.setSelectedItem("Yes");
+    }
+
+    public String getDate() throws ParseException
+    {
+        LocalDateTime myDateObj = LocalDateTime.now();
+        System.out.println("Before formatting: " + myDateObj);
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+        String formattedDate = myDateObj.format(myFormatObj);
+        return formattedDate;
     }
 
     /**
@@ -548,6 +565,8 @@ public class Nurse extends javax.swing.JFrame {
         }
         else 
         {
+            
+            
             ArrayList<String> localPatientInfo = new ArrayList<String>();
             //localPatientInfo.add(localPatientID);
             //need to grab what's there and save it there again
@@ -568,7 +587,13 @@ public class Nurse extends javax.swing.JFrame {
             localPatientInfo.add("");
             localPatientInfo.add(localAdmittance);
             //addmitance date
-            localPatientInfo.add("");
+            try
+            {
+                localPatientInfo.add(getDate());
+            }
+            catch(Exception e)
+            {
+            }
             //discharge date
             localPatientInfo.add("");
             //discharge Status 

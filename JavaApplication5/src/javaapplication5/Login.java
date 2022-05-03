@@ -7,6 +7,7 @@ package javaapplication5;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /*
@@ -138,6 +139,8 @@ public class Login extends javax.swing.JFrame {
                 nurse.setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -156,8 +159,14 @@ public class Login extends javax.swing.JFrame {
             System.out.println("In bill");
             JOptionPane.showMessageDialog(null, "Login Successful");
                  this.dispose();
-            Billing billingsearch = new Billing();
-            billingsearch.setVisible(true);
+            try
+            {
+                Billing billingsearch = new Billing();
+                billingsearch.setVisible(true);
+            }
+            catch (Exception e)
+            {
+            }
         }
 
         else

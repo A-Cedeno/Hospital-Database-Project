@@ -11,6 +11,19 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Random;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -21,8 +34,271 @@ public class Billing extends javax.swing.JFrame {
     /**
      * Creates new form Billing
      */
-    public Billing() {
+    public Billing() throws SQLException {
         initComponents();
+
+        
+        setList();
+        //calculateTotal();
+    }
+
+    public void setList() throws SQLException
+    {
+        azure db = new azure();
+        //DefaultListModel empty = new DefaultListModel();
+        //jList6.setModel(empty);
+        ViewPatient viewPatient = new ViewPatient();
+        
+        DefaultListModel tempList = viewPatient.setPatient(); 
+        DefaultListModel temp = new DefaultListModel();
+        db.connect();
+        //If the nurse has already filled in the information of a patient and set a decision on whether they should be admitted or not, that patient no longer appears
+        /*
+        for(int i = 0; i < 2; i++)
+        {
+            //System.out.println("length of temp list: " + tempList.size());
+            System.out.println("items in temp list: " + tempList);
+            String[] names = (tempList.get(i)).toString().split("[^A-Za-z]+");
+            String firstName = names[0];
+            System.out.println(firstName);
+            String lastName = names[1];
+            System.out.println(lastName);
+
+            
+            ResultSet patientInfo = db.getPatientByName(firstName, lastName);
+            localPatientID = patientInfo.getInt(1);
+            
+            if (db.getVisit(localPatientID) != null)
+            {
+                System.out.println("Removing: " + firstName);
+                tempList.remove(i);
+            }
+        }
+        */
+
+        Object[] patientNames = tempList.toArray();
+        int count = tempList.size();
+        for(int i = 0; i < count; i++)
+        {
+            //System.out.println("length of temp list: " + tempList.size());
+            System.out.println("items in temp list: " + tempList);
+            String[] names = (patientNames[i]).toString().split("[^A-Za-z]+");
+            String firstName = names[0];
+            System.out.println(firstName);
+            String lastName = names[1];
+            System.out.println(lastName);
+
+            
+            ResultSet patientInfo = db.getPatientByName(firstName, lastName);
+            localPatientID = patientInfo.getInt(1);
+            
+            if (db.getVisit(localPatientID) != null)
+            {
+                System.out.println("in here");
+                ResultSet visitInfo = db.getVisit(localPatientID);
+                if(visitInfo.getString("Admittance_Status").contains("Yes"))
+                {
+                    if(visitInfo.getString("Discharge_Status").contains("Yes"))
+                    {
+                        localVisitID = visitInfo.getInt("Visit_ID");
+                        if(db.getBill(localVisitID) != null)
+                        {
+                            
+                        }
+                        else
+                        {
+                            temp.addElement(firstName + " " + lastName);
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Patient has not been discharged yet!");
+                    }
+                }
+            }
+        }
+
+        db.close();
+
+        //jList6.setModel(tempList);
+        if(temp.isEmpty())
+        {
+            temp.addElement("No current patients to service");
+            jList6.setModel(temp);
+        }
+        else
+        {
+            jList6.setModel(temp);
+        }
+
+        ListSelectionListener ltd = new ListSelectionListener()
+        {
+            public void valueChanged(ListSelectionEvent listSelection)
+            {
+                boolean adjust = listSelection.getValueIsAdjusting();
+                if(!adjust)
+                {
+                    JList l = (JList) listSelection.getSource();
+                    String selectedValue = l.getSelectedValue().toString();
+                    System.out.println("List Selection: " + selectedValue);
+                    try
+                    {
+                        //emptyFields();
+                        setPatient(selectedValue);
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                }
+            }
+        };
+        jList6.addListSelectionListener(ltd);
+    }
+
+    public void setPatient(String name) throws SQLException
+    {
+        String[] names = name.split("[^A-Za-z]+");
+        String firstName = names[0];
+        System.out.println(firstName);
+        String lastName = names[1];
+        System.out.println(lastName);
+
+        azure db = new azure();
+        db.connect();
+        ResultSet patientInfo = db.getPatientByName(firstName, lastName);
+        localPatientID = patientInfo.getInt(1);
+
+        ResultSet visitInfo = db.getVisit(localPatientID);
+        localVisitID = visitInfo.getInt(2);
+        /*
+        ResultSet visitInfo = db.getVisit(localPatientID);
+        if(db.getVisit(localPatientID) == null || (visitInfo.getString("Admittance_Status")).equals("Yes"))
+        {
+            populateFields(patientInfo);
+        }
+        */
+        try
+        {
+            System.out.println("In setPatient method of Nurse");
+            populateFields(patientInfo, visitInfo);
+
+        }
+        catch (Exception e)
+        {
+        }
+        db.close();
+    }
+
+    public void populateFields(ResultSet patientInfo, ResultSet visitInfo) throws SQLException, ParseException
+    {
+        FirstName.setText(patientInfo.getString(2).replaceAll("\\s", ""));
+        FirstNameBill.setText(patientInfo.getString(2).replaceAll("\\s", ""));
+        LastName.setText(patientInfo.getString(3).replaceAll("\\s", ""));
+        LastNameBill.setText(patientInfo.getString(3).replaceAll("\\s", ""));
+        DOB.setText(patientInfo.getString(4));
+        Gender.setText(patientInfo.getString(5).replaceAll("\\s", ""));
+
+        int billID = (int)(Math.random()*(100000 - 1 + 1) + 1);
+        BillNum.setText(billID + "");
+        Insurance.setText(patientInfo.getString(7).replaceAll("\\s", ""));
+        DefaultListModel list = new DefaultListModel();
+            list.addElement(visitInfo.getString(11).replaceAll("\\s", ""));
+            list.addElement(visitInfo.getString(12).replaceAll("\\s", ""));
+        DateAdmitted.setText(visitInfo.getString("Admittance_Date").replaceAll("\\s", ""));
+        DateReleased.setText(visitInfo.getString("Discharge_Date").replaceAll("\\s", ""));
+        jList5.setModel(list);
+        SecondaryPhone.setText(patientInfo.getString(9).replaceAll("\\s", ""));
+        City.setText(patientInfo.getString(17).replaceAll("\\s", ""));
+        Address.setText(patientInfo.getString(18).replaceAll("\\s", ""));
+        State.setText(patientInfo.getString(19).replaceAll("\\s", ""));
+        Zip.setText(patientInfo.getString(20).replaceAll("\\s", ""));
+        PrimaryPhone.setText(patientInfo.getString(21).replaceAll("\\s", ""));
+        Email.setText(patientInfo.getString(22).replaceAll("\\s", ""));
+
+        Total.setText("$" + calculateTotal());
+        
+
+
+        
+    }
+
+    public void emptyFields()
+    {
+        jList6.removeAll();
+        FirstName.setText("");
+        LastName.setText("");
+        DOB.setText("");
+        Gender.setText("");
+        //Admit.setSelectedItem("Yes");
+    }
+
+    public int getVisitDays() throws ParseException, SQLException
+    {
+        azure db = new azure();
+        db.connect();
+        ResultSet visitInfo = db.getVisit(localPatientID);
+
+        String admittanceDate = visitInfo.getString("Admittance_Date").replaceAll("\\s", "");
+        String dischargeDate = visitInfo.getString("Discharge_Date").replaceAll("\\s", "");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date firstDate = sdf.parse(admittanceDate);
+        Date secondDate = sdf.parse(dischargeDate);
+
+        long diff = secondDate.getTime() - firstDate.getTime();
+
+        TimeUnit time = TimeUnit.DAYS; 
+        long diffrence = time.convert(diff, TimeUnit.MILLISECONDS);
+        int days = (int) diffrence;
+
+        db.close();
+        return days;
+    }
+
+    public int calculateTotal() throws SQLException, ParseException
+    {
+        localTotal = 0;
+        azure db = new azure();
+        db.connect();
+
+        ResultSet visitInfo = db.getVisit(localPatientID);
+        ResultSet medicineInfo = db.getTreatmentList();
+        ResultSet testInfo = db.getTestList();
+
+        String[] medicine = visitInfo.getString("Prescriptions").replaceAll("\\s", "").split("[^A-Za-z]+");
+        for(int i = 0; i < medicine.length; i++)
+        {
+            do
+            {
+                String tempMed = medicineInfo.getString(1).replaceAll("\\s", "");
+                if(medicine[i].contains(tempMed))
+                {
+                    localTotal += medicineInfo.getInt(2);
+                }
+            } while(medicineInfo.next());
+        }
+
+        String[] tests = visitInfo.getString("Tests_Administered").replaceAll("\\s", "").split("[^A-Za-z]+");
+        for(int i = 0; i < tests.length; i++)
+        {
+            do
+            {
+                String tempTest = testInfo.getString(1).replaceAll("\\s", "");
+                if(tests[i].contains(tempTest))
+                {
+                    localTotal += testInfo.getInt(2);
+                }
+            } while(testInfo.next());
+        }
+
+        System.out.println("visit days: " + getVisitDays());
+        System.out.println(visitCharge);
+        localTotal += ((getVisitDays() + 1) * visitCharge);
+        
+        
+        //System.out.println("calculated total = " + localTotal);
+        db.close();
+        return localTotal;
     }
 
     /**
@@ -96,9 +372,7 @@ public class Billing extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 250));
-        setMaximumSize(new java.awt.Dimension(580, 466));
         setMinimumSize(new java.awt.Dimension(580, 466));
-        setPreferredSize(new java.awt.Dimension(580, 466));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(420, 450));
@@ -178,6 +452,11 @@ public class Billing extends javax.swing.JFrame {
         jPanel1.add(AptLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 130, -1));
 
         Address.setEditable(false);
+        Address.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddressActionPerformed(evt);
+            }
+        });
         jPanel1.add(Address, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 110, -1));
 
         AddressLabel.setText("Street Address");
@@ -410,8 +689,14 @@ public class Billing extends javax.swing.JFrame {
 
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
         this.dispose();
-        Billing billing = new Billing();
-        billing.setVisible(true);
+        try
+        {
+            Billing billing = new Billing();
+            billing.setVisible(true);
+        }
+        catch(Exception e)
+        {
+        }
     }//GEN-LAST:event_OKActionPerformed
 
     private void TaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaxActionPerformed
@@ -428,9 +713,26 @@ public class Billing extends javax.swing.JFrame {
 
     private void GenerateBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateBillActionPerformed
         // TODO add your handling code here:
+        // TODO add your handling code here:
+        //wasnt able to figure out which button this is maybe submit button?
         System.out.println("submit button pushed");
         azure db = new azure();
         db.connect();
+        // getting all fields
+        localBillNum = Integer.parseInt(BillNum.getText());
+        //localTotal = Integer.parseInt(Total.getText());
+
+         
+
+         
+       ArrayList billInformation = new ArrayList();
+        
+        billInformation.add(localVisitID);
+        billInformation.add(localBillNum);
+        billInformation.add(localTotal);
+
+
+        db.setBill(localVisitID, localBillNum, localTotal);
         db.close();
     }//GEN-LAST:event_GenerateBillActionPerformed
 
@@ -489,6 +791,10 @@ public class Billing extends javax.swing.JFrame {
     private void InsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsuranceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_InsuranceActionPerformed
+
+    private void AddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddressActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -519,7 +825,13 @@ public class Billing extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Billing().setVisible(true);
+                try
+                {
+                    new Billing().setVisible(true);
+                }
+                catch(Exception e)
+                {
+                }
                     
             }
         });
@@ -608,7 +920,7 @@ private String localVisits; //jList2
 private String localMedications; //jList3
 private String localVaccines; //jList1
 private String localAllergies; //jlist4
-private String localBillNum;
+private int localBillNum;
 private String localFirstNameBill;
 private String localLastNameBill;
 private Date localDateAdmitted;
@@ -616,6 +928,9 @@ private Date localDateReleased;
 private String localBillable; //jList5
 private String localTax;
 private String localDueDate;
-private String localTotal;
+private int localTotal = 0;
+private int localPatientID = -1;
+private int localVisitID = -1;
+private final int visitCharge = 700;
 
 }

@@ -10,6 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.DefaultListModel;
@@ -220,6 +223,16 @@ public class Doctor extends javax.swing.JFrame {
         Height.setText("");
         Weight.setText("");
         //Admit.setSelectedItem("Yes");
+    }
+
+    public String getDate() throws ParseException
+    {
+        LocalDateTime myDateObj = LocalDateTime.now();
+        System.out.println("Before formatting: " + myDateObj);
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+        String formattedDate = myDateObj.format(myFormatObj);
+        return formattedDate;
     }
 
     /**
@@ -649,7 +662,13 @@ public class Doctor extends javax.swing.JFrame {
             //addmitance date
             localPatientInfo.add(visitInfo.getString(14));
             //discharge date
-            localPatientInfo.add(""); //handled by doctor
+            try
+            {
+                localPatientInfo.add(getDate());
+            }
+            catch(Exception e)
+            {
+            }
             //discharge Status 
             localPatientInfo.add(localDischargeStatus); //handled by doctor
             //localPatientInfo.add(localNotes);

@@ -190,6 +190,25 @@ public class azure
         return null;
     }
 
+    public static ResultSet getBill(int visitID)
+    {    
+
+        try
+        {
+            PreparedStatement stmt = con.prepareStatement("Select * FROM Bill WHERE Visit_ID = ?");
+            stmt.setInt(1, visitID);
+            ResultSet bill = stmt.executeQuery();
+
+            if (bill.next()) return bill;
+            else return null;
+
+        } catch (Exception e) {
+            error = e.toString();
+        }
+
+        return null;
+    }
+
     public static ResultSet getVisitDoctor(int patientID)
     {    
 
